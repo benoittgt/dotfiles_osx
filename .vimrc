@@ -18,7 +18,9 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'sjl/gundo.vim'
+Plugin 'mbbill/undotree'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-rails'
 
 call vundle#end()      " required
 
@@ -43,17 +45,17 @@ set ruler
 set backspace=indent,eol,start
 set cpoptions+=$
 
-" swapfile in other place
-" set swapfile
-" set directory=~/.vim-tmp
-
 " theme
 set background=dark
 colorscheme molokai
 
 " History
 set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
+
+"maximum number of changes that can be undone
+set undolevels=1000000
+"maximum number lines to save for undo on a buffer reload
+set undoreload=10000000
 
 set title                " change the terminal's title
 set visualbell           " don't beep
@@ -76,8 +78,9 @@ set autowrite
 " don't show warnings when saving go file
 let g:go_fmt_fail_silently = 1
 
-" search visual selected text
-vnoremap // y/<C-R>"<CR>
+" undotree
+set undofile
+set undodir='~/.undodir/'
 
 """""" map
 " window movements
@@ -90,6 +93,9 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
+
+" search visual selected text
+vnoremap // y/<C-R>"<CR>
 
 " nnoremap <C-p> :bprevious<CR>
 nmap <S-Enter> O<Esc>
@@ -121,5 +127,5 @@ map <down> <ESC>:buffer<SPACE>
 map <left> <ESC>:bp<RETURN>
 map <right> <ESC>:bn<RETURN>
 
-" gundo
-nnoremap <F5> :GundoToggle<CR>
+" undotree
+nnoremap <F5> :UndotreeToggle<CR>
