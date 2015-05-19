@@ -1,4 +1,4 @@
-" Vundle
+"status Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -21,6 +21,8 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'mbbill/undotree'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-commentary'
+Plugin 'rbgrouleff/bclose.vim'
 
 call vundle#end()      " required
 
@@ -44,6 +46,7 @@ set showcmd
 set ruler
 set backspace=indent,eol,start
 set cpoptions+=$
+set tags+=.tags
 
 " theme
 set background=dark
@@ -103,6 +106,9 @@ nmap <CR> o<Esc>
 
 " Remap ctags
 nmap <C-T> <C-]>
+
+" Map CtrlPTags
+noremap <C-i> :CtrlPTag<CR>
 
 " vim-expand
 vmap v <Plug>(expand_region_expand)
