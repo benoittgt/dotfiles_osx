@@ -66,9 +66,6 @@ set noerrorbells         " don't beep
 
 " airline
 set laststatus=2
-
-" let g:airline_powerline_fonts = 1
-set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -138,3 +135,15 @@ map <right> <ESC>:bn<RETURN>
 
 " undotree
 nnoremap <F5> :UndotreeToggle<CR>
+
+" relativenumber line number
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-b> :call NumberToggle()<CR>
