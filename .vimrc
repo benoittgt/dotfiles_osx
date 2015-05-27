@@ -98,7 +98,7 @@ set undofile
 set undodir='~/.undodir/'
 
 " more result with ctrlp
-let g:ctrlp_match_window = 'results:100'
+let g:ctrlp_match_window = 'min:4,max:40'
 
 """""" map
 " window movements
