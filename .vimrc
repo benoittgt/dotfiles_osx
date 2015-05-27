@@ -14,15 +14,23 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'terryma/vim-expand-region'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'mbbill/undotree'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-rails'
+Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'rbgrouleff/bclose.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
+Plugin 'ecomba/vim-ruby-refactoring'
+
+"ruby block select
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
 
 call vundle#end()      " required
 
@@ -55,10 +63,14 @@ colorscheme molokai
 " History
 set history=1000         " remember more commands and search history
 
+" Keep 5 lines below and above the cursor
+set scrolloff=5
+
 "maximum number of changes that can be undone
-set undolevels=1000000
+set undolevels=10000
 "maximum number lines to save for undo on a buffer reload
-set undoreload=10000000
+set undoreload=100000
+set hidden
 
 set title                " change the terminal's title
 set visualbell           " don't beep
@@ -84,6 +96,9 @@ let g:go_fmt_fail_silently = 1
 " undotree
 set undofile
 set undodir='~/.undodir/'
+
+" more result with ctrlp
+let g:ctrlp_match_window = 'min:4,max:40'
 
 """""" map
 " window movements
