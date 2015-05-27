@@ -66,6 +66,10 @@ set history=1000         " remember more commands and search history
 " Keep 5 lines below and above the cursor
 set scrolloff=5
 
+" cursor line
+set cursorline
+hi CursorLine guibg=Grey20
+
 "maximum number of changes that can be undone
 set undolevels=10000
 "maximum number lines to save for undo on a buffer reload
