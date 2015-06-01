@@ -68,7 +68,7 @@ set scrolloff=5
 
 " cursor line
 set cursorline
-hi CursorLine guibg=Grey20
+hi CursorLine guibg=Grey15
 
 "maximum number of changes that can be undone
 set undolevels=10000
