@@ -116,6 +116,10 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
+" Proper indent when pasting
+nnoremap p p==
+nnoremap <S-p> <S-p>==
+
 " search visual selected text
 vnoremap // y/<C-R>"<CR>
 
