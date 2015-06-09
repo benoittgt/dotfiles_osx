@@ -55,6 +55,7 @@ set ruler
 set backspace=indent,eol,start
 set cpoptions+=$
 set tags+=.tags
+set noeol "no new line at the end of the file
 
 " theme
 set background=dark
