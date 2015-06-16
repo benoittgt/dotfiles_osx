@@ -27,6 +27,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'godlygeek/tabular'
 
 "ruby block select
 Plugin 'kana/vim-textobj-user'
@@ -153,7 +154,7 @@ imap <F1> <C-o>:echo<CR>
 
 " buffer movements
 map <up> <ESC>:ls<RETURN>
-map <down> <ESC>:buffer<SPACE>
+map <down> <ESC>:bd<RETURN>
 map <left> <ESC>:bp<RETURN>
 map <right> <ESC>:bn<RETURN>
 

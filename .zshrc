@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="clean"
+ZSH_THEME='clean'
 
 plugins=(git rails ruby terminalapp common-aliases git-extras)
 
@@ -9,10 +9,11 @@ source $ZSH/oh-my-zsh.sh
 # source ~/.zshrc_export_path
 
 #Alias
-alias tmux="tmux -2"
+alias tmux='tmux -2'
 alias gvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+alias rbr='rerun bin/rspec'
 
 #Clean anoying warning when using git push
 unset GNOME_KEYRING_CONTROL
-alias cca="cd ~/code/appaloosa/"
-alias ctags="`brew --prefix`/bin/ctags"
+alias cca='cd ~/code/appaloosa/'
+alias ctags='`brew --prefix`/bin/ctags'
