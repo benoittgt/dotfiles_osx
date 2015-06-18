@@ -28,6 +28,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'godlygeek/tabular'
+Plugin 'mattn/emmet-vim'
 
 "ruby block select
 Plugin 'kana/vim-textobj-user'
