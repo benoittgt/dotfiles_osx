@@ -23,16 +23,13 @@ Plugin 'tpope/vim-rails'
 Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'rbgrouleff/bclose.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'tpope/vim-surround'
+Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'godlygeek/tabular'
 Plugin 'mattn/emmet-vim'
-
-"ruby block select
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'ervandew/supertab'
 
 call vundle#end()      " required
 
