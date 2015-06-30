@@ -11,7 +11,7 @@ source $ZSH/oh-my-zsh.sh
 #Alias
 alias tmux='tmux -2'
 alias gvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
-alias rbr='rerun bin/rspec'
+alias rbr='rerun bin/rspec -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" '
 
 #Clean anoying warning when using git push
 unset GNOME_KEYRING_CONTROL
