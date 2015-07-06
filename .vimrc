@@ -120,6 +120,10 @@ nnoremap <C-l> <C-W>l
 nnoremap p p==
 nnoremap <S-p> <S-p>==
 
+" Avoid typing error when saving or leaving
+cnoreabbrev W w
+cnoreabbrev Wq wq
+
 " search visual selected text
 vnoremap // y/<C-R>"<CR>
 
