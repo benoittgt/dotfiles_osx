@@ -124,6 +124,9 @@ nnoremap <S-p> <S-p>==
 cnoreabbrev W w
 cnoreabbrev Wq wq
 
+" Avoid Escape key
+imap jj <Esc>
+
 " search visual selected text
 vnoremap // y/<C-R>"<CR>
 
