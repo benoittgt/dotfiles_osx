@@ -166,6 +166,12 @@ map <right> <ESC>:bn<RETURN>
 " undotree
 nnoremap <F5> :UndotreeToggle<CR>
 
+" Set leaderkey
+let mapleader = "\<Space>"
+
+" Save file with leader
+nnoremap <Leader>w :w<CR>
+
 " relativenumber line number
 function! NumberToggle()
   if(&relativenumber == 1)
