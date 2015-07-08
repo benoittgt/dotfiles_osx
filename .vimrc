@@ -124,11 +124,11 @@ nnoremap <S-p> <S-p>==
 cnoreabbrev W w
 cnoreabbrev Wq wq
 
-" Avoid Escape key
-imap jj <Esc>
-
 " search visual selected text
 vnoremap // y/<C-R>"<CR>
+
+" Avoid Escape key
+imap jj <Esc>
 
 " nnoremap <C-p> :bprevious<CR>
 nmap <S-Enter> O<Esc>
