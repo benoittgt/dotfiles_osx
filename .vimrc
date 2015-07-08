@@ -2,6 +2,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" The mapleader has to be set before vundle starts loading all the plugins.
+let mapleader = "\<Space>"
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -104,6 +107,10 @@ set undodir='~/.undodir/'
 " more result with ctrlp
 let g:ctrlp_match_window = 'min:4,max:40'
 
+"""""" ruby specific
+" call pry
+abbreviate pry! require 'pry'; binding.pry;
+
 """""" map
 " window movements
 nmap <silent> <A-Up> :wincmd k<CR>
@@ -161,13 +168,12 @@ imap <F1> <C-o>:echo<CR>
 map <up> <ESC>:ls<RETURN>
 map <down> <ESC>:bd<RETURN>
 map <left> <ESC>:bp<RETURN>
+nnoremap <Leader>h :bp<CR>
 map <right> <ESC>:bn<RETURN>
+nnoremap <Leader>l :bn<CR>
 
 " undotree
 nnoremap <F5> :UndotreeToggle<CR>
-
-" Set leaderkey
-let mapleader = "\<Space>"
 
 " Save file with leader
 nnoremap <Leader>w :w<CR>
