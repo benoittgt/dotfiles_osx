@@ -109,7 +109,7 @@ let g:ctrlp_match_window = 'min:4,max:40'
 
 """""" ruby specific
 " call pry
-abbreviate pry! require 'pry'; binding.pry;
+abbreviate pry! require 'pry'; binding.pry
 
 """""" map
 " window movements
@@ -177,6 +177,9 @@ nnoremap <F5> :UndotreeToggle<CR>
 
 " Save file with leader
 nnoremap <Leader>w :w<CR>
+
+" Comment line with leader
+nnoremap <Leader>c :Commentary<CR>
 
 " relativenumber line number
 function! NumberToggle()
