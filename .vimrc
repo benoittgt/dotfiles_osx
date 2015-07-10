@@ -107,6 +107,9 @@ set undodir='~/.undodir/'
 " more result with ctrlp
 let g:ctrlp_match_window = 'min:4,max:40'
 
+" disable the right scroll bar on macvim
+set guioptions-=r
+
 """""" ruby specific
 " call pry
 abbreviate pry! require 'pry'; binding.pry
@@ -136,6 +139,9 @@ vnoremap // y/<C-R>"<CR>
 
 " Avoid Escape key
 imap jj <Esc>
+
+" Avoid Escape key
+imap jw <ESC>:w<RETURN>
 
 " nnoremap <C-p> :bprevious<CR>
 nmap <S-Enter> O<Esc>
