@@ -26,7 +26,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'rbgrouleff/bclose.vim'
-" Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
@@ -186,6 +186,12 @@ nnoremap <Leader>w :w<CR>
 
 " Comment line with leader
 nnoremap <Leader>c :Commentary<CR>
+
+" Close buffer
+nnoremap <Leader>d :bd<CR>
+
+" Quit vim
+nnoremap <Leader>q :wq<CR>
 
 " relativenumber line number
 function! NumberToggle()
