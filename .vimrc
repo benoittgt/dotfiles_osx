@@ -26,7 +26,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'rbgrouleff/bclose.vim'
-Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
@@ -76,7 +76,7 @@ hi CursorLine guibg=Grey15
 "maximum number of changes that can be undone
 set undolevels=10000
 "maximum number lines to save for undo on a buffer reload
-set undoreload=100000
+set undoreload=10000
 set hidden
 
 set title                " change the terminal's title
@@ -127,8 +127,8 @@ nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
 " Proper indent when pasting
-nnoremap p p==
-nnoremap <S-p> <S-p>==
+" nnoremap p p==
+" nnoremap <S-p> <S-p>==
 
 " Avoid typing error when saving or leaving
 cnoreabbrev W w
@@ -150,21 +150,12 @@ nmap <CR> o<Esc>
 " Remap ctags
 nmap <C-T> <C-]>
 
-" Map CtrlPTags
-noremap <C-i> :CtrlPTag<CR>
-
 " vim-expand
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " select matching bracket
 noremap % v%
-
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
 
 " disable F1
 nmap <F1> :echo<CR>
@@ -178,9 +169,6 @@ nnoremap <Leader>h :bp<CR>
 map <right> <ESC>:bn<RETURN>
 nnoremap <Leader>l :bn<CR>
 
-" undotree
-nnoremap <F5> :UndotreeToggle<CR>
-
 " Save file with leader
 nnoremap <Leader>w :w<CR>
 
@@ -192,6 +180,12 @@ nnoremap <Leader>d :bd<CR>
 
 " Quit vim
 nnoremap <Leader>q :wq<CR>
+
+" Open buffer list
+nnoremap <Leader>t :CtrlPTag<SPACE>
+
+" Open tag list
+nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " relativenumber line number
 function! NumberToggle()
