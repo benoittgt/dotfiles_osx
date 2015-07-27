@@ -26,6 +26,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'rbgrouleff/bclose.vim'
+Plugin 'NLKNguyen/papercolor-theme'
 " Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
@@ -61,7 +62,7 @@ set noeol "no new line at the end of the file
 
 " theme
 set background=dark
-colorscheme molokai
+colorscheme PaperColor
 
 " History
 set history=1000         " remember more commands and search history
@@ -176,6 +177,7 @@ nnoremap <Leader>w :w<CR>
 
 " Comment line with leader
 nnoremap <Leader>c :Commentary<CR>
+vmap <Leader>c :Commentary<CR>
 
 " Close buffer
 nnoremap <Leader>d :bd<CR>
@@ -200,3 +202,6 @@ function! NumberToggle()
 endfunc
 
 nnoremap <C-b> :call NumberToggle()<CR>
+
+"lazy js. Append ; at the end of the line
+nnoremap <Leader>; m`A;<Esc>``
