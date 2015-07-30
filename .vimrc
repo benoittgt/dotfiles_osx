@@ -27,13 +27,14 @@ Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'rbgrouleff/bclose.vim'
 Plugin 'NLKNguyen/papercolor-theme'
-" Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'godlygeek/tabular'
 Plugin 'mattn/emmet-vim'
 Plugin 'ervandew/supertab'
+Plugin 'skwp/vim-iterm-rspec'
 
 call vundle#end()      " required
 
@@ -144,7 +145,7 @@ vnoremap // y/<C-R>"<CR>
 imap jj <Esc>
 
 " Avoid Escape key
-imap jw <ESC>:w<RETURN>
+imap jk <ESC>:w<RETURN>
 
 " nnoremap <C-p> :bprevious<CR>
 nmap <S-Enter> O<Esc>
