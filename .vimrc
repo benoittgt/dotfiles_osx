@@ -206,3 +206,14 @@ nnoremap <C-b> :call NumberToggle()<CR>
 
 "lazy js. Append ; at the end of the line
 nnoremap <Leader>; m`A;<Esc>``
+
+" Relativenumber line disable
+function! DisableRelativeLineNumber()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  endif
+endfunc
+
+" Disable relative number when losing focus
+au FocusLost * :call DisableRelativeLineNumber()
