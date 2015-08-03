@@ -220,5 +220,5 @@ endfunc
 au FocusLost * :call DisableRelativeLineNumber()
 
 " QuickScope toggle for highlighting current letter to jump
-nmap <leader>h <plug>(QuickScopeToggle)
-vmap <leader>h <plug>(QuickScopeToggle)
+" nmap <leader>h <plug>(QuickScopeToggle)
+" vmap <leader>h <plug>(QuickScopeToggle)
