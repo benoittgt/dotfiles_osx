@@ -35,6 +35,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'mattn/emmet-vim'
 Plugin 'ervandew/supertab'
 Plugin 'skwp/vim-iterm-rspec'
+Plugin 'unblevable/quick-scope'
 
 call vundle#end()      " required
 
@@ -190,7 +191,7 @@ nnoremap <Leader>q :wq<CR>
 nnoremap <Leader>t :CtrlPTag<SPACE>
 
 " Open tag list
-nnoremap <Leader>b :CtrlPBuffer<RETURN>
+nnoremap <Leader>b :CtrlPBuffer<CR><CR>
 
 " relativenumber line number
 function! NumberToggle()
@@ -217,3 +218,7 @@ endfunc
 
 " Disable relative number when losing focus
 au FocusLost * :call DisableRelativeLineNumber()
+
+" QuickScope toggle for highlighting current letter to jump
+nmap <leader>h <plug>(QuickScopeToggle)
+vmap <leader>h <plug>(QuickScopeToggle)

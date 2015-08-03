@@ -7,6 +7,7 @@ source $ZSH/oh-my-zsh.sh
 
 # export PATH source
 # source ~/.zshrc_export_path
+cd ~/code/appaloosa/
 
 #Alias
 alias tmux='tmux -2'
