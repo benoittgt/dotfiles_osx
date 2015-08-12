@@ -20,7 +20,6 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'mbbill/undotree'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'keith/rspec.vim'
@@ -31,11 +30,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'godlygeek/tabular'
-Plugin 'mattn/emmet-vim'
 Plugin 'ervandew/supertab'
-Plugin 'skwp/vim-iterm-rspec'
-Plugin 'unblevable/quick-scope'
+" Plugin 'mbbill/undotree'
+" Plugin 'skwp/vim-iterm-rspec'
+" Plugin 'mattn/emmet-vim'
+" Plugin 'unblevable/quick-scope'
 
 call vundle#end()      " required
 
@@ -118,6 +117,7 @@ set guioptions-=r
 """""" ruby specific
 " call pry
 abbreviate pry! require 'pry'; binding.pry
+abbreviate rlog Rails::logger.info ' \n'
 
 """""" map
 " window movements
@@ -144,6 +144,10 @@ vnoremap // y/<C-R>"<CR>
 
 " Avoid Escape key
 imap jj <Esc>
+
+" Avoid Escape key when leaving multicursor selection
+" let g:multi_cursor_quit_key='<jj>'
+" nnoremap <> :call multiple_cursors#quit()<CR>
 
 " Avoid Escape key
 imap jk <ESC>:w<RETURN>
