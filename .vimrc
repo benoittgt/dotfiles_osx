@@ -31,10 +31,10 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'ervandew/supertab'
+Plugin 'unblevable/quick-scope'
 " Plugin 'mbbill/undotree'
 " Plugin 'skwp/vim-iterm-rspec'
 " Plugin 'mattn/emmet-vim'
-" Plugin 'unblevable/quick-scope'
 
 call vundle#end()      " required
 
@@ -58,7 +58,7 @@ set showcmd
 set ruler
 set backspace=indent,eol,start
 set cpoptions+=$
-set tags+=.tags
+set tags=.tags
 set noeol "no new line at the end of the file
 
 " theme
@@ -89,8 +89,6 @@ set noerrorbells         " don't beep
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 set guifont=Droid_Sans_Mono_for_Powerline:h11
-" let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 
 " vim markdown
@@ -224,5 +222,30 @@ endfunc
 au FocusLost * :call DisableRelativeLineNumber()
 
 " QuickScope toggle for highlighting current letter to jump
-" nmap <leader>h <plug>(QuickScopeToggle)
-" vmap <leader>h <plug>(QuickScopeToggle)
+" Thanks to @VanLaser for cleaning the code up and expanding capabilities to include e.g. `df`
+" from https://gist.github.com/cszentkiralyi/dc61ee28ab81d23a67aa
+
+let g:qs_enable = 0
+let g:qs_enable_char_list = [ 'f', 'F', 't', 'T' ]
+
+function! Quick_scope_selective(movement)
+    let needs_disabling = 0
+    if !g:qs_enable
+        QuickScopeToggle
+        redraw
+        let needs_disabling = 1
+    endif
+    let letter = nr2char(getchar())
+    if needs_disabling
+        QuickScopeToggle
+    endif
+    return a:movement . letter
+endfunction
+
+for i in g:qs_enable_char_list
+	execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
+endfor
+
+" Add mapping to jump to sublime text for my co-workers
+nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
+
