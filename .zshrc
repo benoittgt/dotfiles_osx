@@ -12,8 +12,9 @@ cd ~/code/appaloosa/
 #Alias
 alias tmux='tmux -2'
 alias gvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
-alias rbr='rerun bin/rspec -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" '
+alias rbr='rerun bin/rspec -b -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" '
 alias m='mvim .'
+alias gpoc='git push origin $(current_branch):master'
 
 #Clean anoying warning when using git push
 unset GNOME_KEYRING_CONTROL

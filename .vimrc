@@ -32,7 +32,7 @@ Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'ervandew/supertab'
 Plugin 'unblevable/quick-scope'
-" Plugin 'mbbill/undotree'
+Plugin 'nathanaelkane/vim-indent-guides' " Dam lost in my test
 " Plugin 'skwp/vim-iterm-rspec'
 " Plugin 'mattn/emmet-vim'
 
@@ -76,9 +76,9 @@ set cursorline
 hi CursorLine guibg=Grey15
 
 "maximum number of changes that can be undone
-set undolevels=10000
+set undolevels=1000
 "maximum number lines to save for undo on a buffer reload
-set undoreload=10000
+set undoreload=1000
 set hidden
 
 set title                " change the terminal's title
@@ -102,10 +102,6 @@ set autowrite
 " don't show warnings when saving go file
 let g:go_fmt_fail_silently = 1
 
-" undotree
-set undofile
-set undodir='~/.undodir/'
-
 " more result with ctrlp
 let g:ctrlp_match_window = 'min:4,max:40'
 
@@ -115,7 +111,7 @@ set guioptions-=r
 """""" ruby specific
 " call pry
 abbreviate pry! require 'pry'; binding.pry
-abbreviate rlog Rails::logger.info ' \n'
+abbreviate rlog Rails::logger.info " \n"
 
 """""" map
 " window movements
@@ -129,10 +125,6 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
-" Proper indent when pasting
-" nnoremap p p==
-" nnoremap <S-p> <S-p>==
-
 " Avoid typing error when saving or leaving
 cnoreabbrev W w
 cnoreabbrev Wq wq
@@ -142,10 +134,6 @@ vnoremap // y/<C-R>"<CR>
 
 " Avoid Escape key
 imap jj <Esc>
-
-" Avoid Escape key when leaving multicursor selection
-" let g:multi_cursor_quit_key='<jj>'
-" nnoremap <> :call multiple_cursors#quit()<CR>
 
 " Avoid Escape key
 imap jk <ESC>:w<RETURN>
