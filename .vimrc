@@ -13,7 +13,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'terryma/vim-expand-region'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -25,7 +24,6 @@ Plugin 'tpope/vim-rails'
 Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'rbgrouleff/bclose.vim'
-Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
@@ -33,8 +31,14 @@ Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'ervandew/supertab'
 Plugin 'unblevable/quick-scope'
 Plugin 'nathanaelkane/vim-indent-guides' " Dam lost in my test
+
+" Themes
+Plugin 'christophermca/meta5'
+Plugin 'NLKNguyen/papercolor-theme'
+
 " Plugin 'skwp/vim-iterm-rspec'
 " Plugin 'mattn/emmet-vim'
+" Plugin 'scrooloose/nerdtree'
 
 call vundle#end()      " required
 
@@ -107,6 +111,10 @@ let g:ctrlp_match_window = 'min:4,max:40'
 
 " disable the right scroll bar on macvim
 set guioptions-=r
+
+" Indent pasted text
+nnoremap p pV`]=
+nnoremap P PV`]=
 
 """""" ruby specific
 " call pry
