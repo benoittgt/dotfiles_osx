@@ -38,7 +38,10 @@ Plugin 'NLKNguyen/papercolor-theme'
 
 " Plugin 'skwp/vim-iterm-rspec'
 " Plugin 'mattn/emmet-vim'
-" Plugin 'scrooloose/nerdtree'
+
+" ember
+Plugin 'scrooloose/nerdtree'
+Plugin 'mustache/vim-mustache-handlebars'
 
 call vundle#end()      " required
 
