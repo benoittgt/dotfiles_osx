@@ -1,4 +1,5 @@
 config defaultToCurrentScreen true
+" ----------------------------------------------------------------------------
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
 
