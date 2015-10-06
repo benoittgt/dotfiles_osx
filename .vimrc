@@ -221,7 +221,6 @@ endfunc
 au FocusLost * :call DisableRelativeLineNumber()
 
 " QuickScope toggle for highlighting current letter to jump
-" Thanks to @VanLaser for cleaning the code up and expanding capabilities to include e.g. `df`
 " from https://gist.github.com/cszentkiralyi/dc61ee28ab81d23a67aa
 
 let g:qs_enable = 0
