@@ -31,6 +31,7 @@ Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'ervandew/supertab'
 Plugin 'unblevable/quick-scope'
 Plugin 'nathanaelkane/vim-indent-guides' " Dam lost in my test
+Plugin 'editorconfig/editorconfig-vim'
 
 " Themes
 Plugin 'christophermca/meta5'
@@ -109,8 +110,14 @@ set autowrite
 " don't show warnings when saving go file
 let g:go_fmt_fail_silently = 1
 
+"""""""""""""""""""""""""""""""""""""""""
+" CTRLP settings
 " more result with ctrlp
 let g:ctrlp_match_window = 'min:4,max:40'
+
+" ignore temp folder
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+"""""""""""""""""""""""""""""""""""""""""
 
 " disable the right scroll bar on macvim
 set guioptions-=r
@@ -118,6 +125,9 @@ set guioptions-=r
 " Indent pasted text
 nnoremap p pV`]=
 nnoremap P PV`]=
+
+" Be able to copy-past path to clipboard
+let @+ = expand("%")
 
 """""" ruby specific
 " call pry
@@ -248,4 +258,4 @@ endfor
 nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
 
 " Close nerdtree if the only remaining window is a nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
