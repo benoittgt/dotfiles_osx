@@ -71,7 +71,7 @@ set noeol "no new line at the end of the file
 
 " theme
 set background=dark
-colorscheme PaperColor
+colorscheme molokai
 
 " History
 set history=1000         " remember more commands and search history
