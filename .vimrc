@@ -220,15 +220,15 @@ nnoremap <C-b> :call NumberToggle()<CR>
 nnoremap <Leader>; m`A;<Esc>``
 
 " Relativenumber line disable
-function! DisableRelativeLineNumber()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  endif
-endfunc
+" function! DisableRelativeLineNumber()
+"   if(&relativenumber == 1)
+"     set norelativenumber
+"     set number
+"   endif
+" endfunc
 
 " Disable relative number when losing focus
-au FocusLost * :call DisableRelativeLineNumber()
+" au FocusLost * :call DisableRelativeLineNumber()
 
 " QuickScope toggle for highlighting current letter to jump
 " from https://gist.github.com/cszentkiralyi/dc61ee28ab81d23a67aa
