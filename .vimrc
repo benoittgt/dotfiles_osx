@@ -32,6 +32,7 @@ Plugin 'ervandew/supertab'
 Plugin 'unblevable/quick-scope'
 Plugin 'nathanaelkane/vim-indent-guides' " Dam lost in my test
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'airblade/vim-gitgutter'
 
 " Themes
 Plugin 'christophermca/meta5'
@@ -202,7 +203,7 @@ nnoremap <Leader>q :wq<CR>
 nnoremap <Leader>t :CtrlPTag<SPACE>
 
 " Open tag list
-nnoremap <Leader>b :CtrlPBuffer<CR><CR>
+nnoremap <Leader>v :CtrlPBuffer<CR><CR>
 
 " relativenumber line number
 function! NumberToggle()
