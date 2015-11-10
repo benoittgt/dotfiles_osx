@@ -161,8 +161,8 @@ imap jj <Esc>
 imap jk <ESC>:w<RETURN>
 
 " nnoremap <C-p> :bprevious<CR>
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
+" nmap <S-Enter> O<Esc>
+" nmap <CR> o<Esc>
 
 " Remap ctags
 nmap <C-T> <C-]>
@@ -180,7 +180,7 @@ imap <F1> <C-o>:echo<CR>
 
 " buffer movements
 map <up> <ESC>:ls<RETURN>
-map <down> <ESC>:bd<RETURN>
+map <down> <ESC>:Bclose<RETURN>
 map <left> <ESC>:bp<RETURN>
 nnoremap <Leader>h :bp<CR>
 map <right> <ESC>:bn<RETURN>
@@ -219,6 +219,7 @@ nnoremap <C-b> :call NumberToggle()<CR>
 
 "lazy js. Append ; at the end of the line
 nnoremap <Leader>; m`A;<Esc>``
+nnoremap <Leader>, m`A,<Esc>``
 
 " Relativenumber line disable
 " function! DisableRelativeLineNumber()
