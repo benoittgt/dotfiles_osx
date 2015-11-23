@@ -12,7 +12,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'terryma/vim-expand-region'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -33,6 +33,8 @@ Plugin 'unblevable/quick-scope'
 Plugin 'nathanaelkane/vim-indent-guides' " Dam lost in my test
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'pbrisbin/vim-mkdir'
+Plugin 'stefanoverna/vim-i18n'
 
 " Themes
 Plugin 'christophermca/meta5'
@@ -122,6 +124,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " disable the right scroll bar on macvim
 set guioptions-=r
+
+" disable the left scroll bar on macvim in NerdTree
+set guioptions-=L
 
 " Indent pasted text
 nnoremap p pV`]=
