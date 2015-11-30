@@ -6,48 +6,45 @@ filetype off                  " required
 let mapleader = "\<Space>"
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'terryma/vim-expand-region'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'scrooloose/syntastic'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'rking/ag.vim'
-Plugin 'tpope/vim-rails'
-Plugin 'keith/rspec.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'rbgrouleff/bclose.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-endwise' " Auto add 'end' after 'if'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'ervandew/supertab'
-Plugin 'unblevable/quick-scope'
-Plugin 'nathanaelkane/vim-indent-guides' " Dam lost in my test
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'pbrisbin/vim-mkdir'
-Plugin 'stefanoverna/vim-i18n'
+Plug 'gmarik/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'terryma/vim-expand-region'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'scrooloose/syntastic'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'thoughtbot/vim-rspec'
+Plug 'rking/ag.vim'
+Plug 'tpope/vim-rails'
+Plug 'keith/rspec.vim'
+Plug 'tpope/vim-commentary'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
+Plug 'ecomba/vim-ruby-refactoring'
+Plug 'ervandew/supertab'
+Plug 'unblevable/quick-scope'
+Plug 'nathanaelkane/vim-indent-guides' " Dam lost in my test
+Plug 'editorconfig/editorconfig-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'stefanoverna/vim-i18n'
 
 " Themes
-Plugin 'christophermca/meta5'
-Plugin 'NLKNguyen/papercolor-theme'
+Plug 'christophermca/meta5'
+Plug 'NLKNguyen/papercolor-theme'
 
-" Plugin 'skwp/vim-iterm-rspec'
-" Plugin 'mattn/emmet-vim'
+" Plug 'skwp/vim-iterm-rspec'
+" Plug 'mattn/emmet-vim'
 
 " ember
-Plugin 'scrooloose/nerdtree'
-Plugin 'mustache/vim-mustache-handlebars'
-
-call vundle#end()      " required
+Plug 'scrooloose/nerdtree'
+Plug 'mustache/vim-mustache-handlebars'
 
 filetype plugin indent on
 
