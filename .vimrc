@@ -34,6 +34,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'stefanoverna/vim-i18n'
+Plug 'Shutnik/jshint2.vim'
 
 " Themes
 Plug 'christophermca/meta5'
@@ -263,3 +264,7 @@ nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bi
 
 " Close nerdtree if the only remaining window is a nerdtree
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Lint javascript when saved
+let jshint2_save = 1
+let jshint2_confirm = 0
