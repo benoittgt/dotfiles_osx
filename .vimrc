@@ -108,9 +108,6 @@ au FocusLost * :wa
 au FocusLost * silent! wa
 set autowrite
 
-" don't show warnings when saving go file
-let g:go_fmt_fail_silently = 1
-
 """""""""""""""""""""""""""""""""""""""""
 " CTRLP settings
 " more result with ctrlp
@@ -130,7 +127,7 @@ set guioptions-=L
 nnoremap p pV`]=
 nnoremap P PV`]=
 
-" Be able to copy-past path to clipboard
+" Be able to copy path to clipboard
 let @+ = expand("%")
 
 """""" ruby specific
@@ -150,22 +147,11 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
-" Avoid typing error when saving or leaving
-cnoreabbrev W w
-cnoreabbrev Wq wq
-
-" search visual selected text
-vnoremap // y/<C-R>"<CR>
-
 " Avoid Escape key
 imap jj <Esc>
 
 " Avoid Escape key
 imap jk <ESC>:w<RETURN>
-
-" nnoremap <C-p> :bprevious<CR>
-" nmap <S-Enter> O<Esc>
-" nmap <CR> o<Esc>
 
 " Remap ctags
 nmap <C-T> <C-]>
@@ -176,10 +162,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " select matching bracket
 noremap % v%
-
-" disable F1
-nmap <F1> :echo<CR>
-imap <F1> <C-o>:echo<CR>
 
 " buffer movements
 map <up> <ESC>:ls<RETURN>
@@ -224,17 +206,6 @@ nnoremap <C-b> :call NumberToggle()<CR>
 nnoremap <Leader>; m`A;<Esc>``
 nnoremap <Leader>, m`A,<Esc>``
 
-" Relativenumber line disable
-" function! DisableRelativeLineNumber()
-"   if(&relativenumber == 1)
-"     set norelativenumber
-"     set number
-"   endif
-" endfunc
-
-" Disable relative number when losing focus
-" au FocusLost * :call DisableRelativeLineNumber()
-
 " QuickScope toggle for highlighting current letter to jump
 " from https://gist.github.com/cszentkiralyi/dc61ee28ab81d23a67aa
 
@@ -261,9 +232,6 @@ endfor
 
 " Add mapping to jump to sublime text for my co-workers
 nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
-
-" Close nerdtree if the only remaining window is a nerdtree
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Lint javascript when saved
 let jshint2_save = 1
