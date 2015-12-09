@@ -47,6 +47,8 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree'
 Plug 'mustache/vim-mustache-handlebars'
 
+call plug#end()
+
 filetype plugin indent on
 
 " Simple settings
