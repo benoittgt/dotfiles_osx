@@ -1,0 +1,11 @@
+--recurse=yes
+--exclude=.git
+--exclude=log
+--exclude=tmp
+--exclude=front/tmp
+--exclude=front/node_modules
+--exclude=front/bower_components
+--exclude=log
+--exclude=.git
+--languages=ruby,javascript
+--totals=yes
