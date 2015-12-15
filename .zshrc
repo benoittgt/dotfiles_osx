@@ -15,6 +15,7 @@ alias gvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 alias rbr='rerun --dir app,spec,front/app bin/rspec -b -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" '
 alias m='mvim .'
 alias gpoc='git push origin $(current_branch):master'
+alias gbs='git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
 
 #Clean anoying warning when using git push
 unset GNOME_KEYRING_CONTROL
