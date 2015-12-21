@@ -1,15 +1,8 @@
-"status Vundle
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" The mapleader has to be set before vundle starts loading all the plugins.
 let mapleader = "\<Space>"
 
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plug 'gmarik/Vundle.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
@@ -128,9 +121,6 @@ set guioptions-=L
 " Indent pasted text
 nnoremap p pV`]=
 nnoremap P PV`]=
-
-" Be able to copy path to clipboard
-let @+ = expand("%")
 
 """""" ruby specific
 " call pry
