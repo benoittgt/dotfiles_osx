@@ -1,6 +1,10 @@
-let mapleader = "\<Space>"
+"install VimPlug if not installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
-" set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
@@ -46,6 +50,7 @@ filetype plugin indent on
 
 " Simple settings
 syntax enable
+set nocompatible
 set number
 set autoindent
 set ruler
@@ -162,6 +167,9 @@ map <left> <ESC>:bp<RETURN>
 nnoremap <Leader>h :bp<CR>
 map <right> <ESC>:bn<RETURN>
 nnoremap <Leader>l :bn<CR>
+
+" Define leader
+let mapleader = "\<Space>"
 
 " Save file with leader
 nnoremap <Leader>w :w<CR>
