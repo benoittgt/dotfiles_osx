@@ -32,6 +32,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'stefanoverna/vim-i18n'
 Plug 'Shutnik/jshint2.vim'
+Plug 'rust-lang/rust.vim'
 
 " Themes
 Plug 'christophermca/meta5'
@@ -189,6 +190,9 @@ nnoremap <Leader>t :CtrlPTag<SPACE>
 
 " Open tag list
 nnoremap <Leader>v :CtrlPBuffer<CR><CR>
+
+" Close current window
+nnoremap <Leader>x :close<CR><CR>
 
 " relativenumber line number
 function! NumberToggle()
