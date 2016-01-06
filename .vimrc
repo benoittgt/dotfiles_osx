@@ -32,7 +32,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'stefanoverna/vim-i18n'
 Plug 'Shutnik/jshint2.vim'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'junegunn/rainbow_parentheses.vim'
 
 " Themes
 Plug 'christophermca/meta5'
@@ -123,6 +124,13 @@ set guioptions-=r
 
 " disable the left scroll bar on macvim in NerdTree
 set guioptions-=L
+
+" enable rainbowParenthese for ruby and js files
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType ruby,javascript RainbowParentheses
+augroup END
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 " Indent pasted text
 nnoremap p pV`]=
