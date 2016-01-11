@@ -13,7 +13,6 @@ Plug 'bling/vim-airline'
 Plug 'terryma/vim-expand-region'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/syntastic'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'thoughtbot/vim-rspec'
 Plug 'albfan/ag.vim'
 Plug 'tpope/vim-rails'
@@ -23,15 +22,12 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
-Plug 'ecomba/vim-ruby-refactoring'
 Plug 'ervandew/supertab'
 Plug 'unblevable/quick-scope'
-Plug 'nathanaelkane/vim-indent-guides' " Dam lost in my test
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'pbrisbin/vim-mkdir'
-Plug 'stefanoverna/vim-i18n'
-Plug 'Shutnik/jshint2.vim'
+Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'junegunn/rainbow_parentheses.vim'
 
@@ -44,7 +40,7 @@ Plug 'NLKNguyen/papercolor-theme'
 
 " ember
 Plug 'scrooloose/nerdtree'
-Plug 'mustache/vim-mustache-handlebars'
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars'}
 
 call plug#end()
 
