@@ -68,6 +68,9 @@ set cpoptions+=$
 set tags+=.tags
 set noeol "no new line at the end of the file
 
+" Help me when I want to replace word surrounded by _
+" set iskeyword-=_
+
 " theme
 set background=dark
 colorscheme molokai
