@@ -20,3 +20,5 @@ alias gbb='git for-each-ref --count=30 --sort=-committerdate refs/heads/ --forma
 unset GNOME_KEYRING_CONTROL
 alias cca='cd ~/code/appaloosa/'
 alias ctags='`brew --prefix`/bin/ctags'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
