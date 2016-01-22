@@ -30,6 +30,8 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'thoughtbot/vim-rspec'
+" Plug 'nathanaelkane/vim-indent-guides'
 
 " Themes
 Plug 'christophermca/meta5'
@@ -229,3 +231,12 @@ nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bi
 " Lint javascript when saved
 let jshint2_save = 1
 let jshint2_confirm = 0
+
+" Rspec.vim mapping
+map <Leader>rt :call RunCurrentSpecFile()<CR>
+map <Leader>rs :call RunNearestSpec()<CR>
+map <Leader>rl :call RunLastSpec()<CR>
+
+" Rspec.vim run command
+let g:rspec_command = "clear && bin/rspec {spec}"
+let g:rspec_runner = "os_x_iterm"
