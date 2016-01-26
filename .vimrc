@@ -134,8 +134,8 @@ augroup END
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 " Indent pasted text
-nnoremap p pV`]=
-nnoremap P PV`]=
+" nnoremap p pV`]=
+" nnoremap P PV`]=
 
 """""" ruby specific
 " call pry
@@ -238,5 +238,5 @@ map <Leader>rs :call RunNearestSpec()<CR>
 map <Leader>rl :call RunLastSpec()<CR>
 
 " Rspec.vim run command
-let g:rspec_command = "clear && bin/rspec {spec}"
+let g:rspec_command = "clear && rbr {spec}"
 let g:rspec_runner = "os_x_iterm"
