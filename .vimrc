@@ -41,7 +41,7 @@ Plug 'NLKNguyen/papercolor-theme'
 " Plug 'mattn/emmet-vim'
 
 " ember
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars'}
 
 call plug#end()
@@ -125,6 +125,10 @@ set guioptions-=r
 
 " disable the left scroll bar on macvim in NerdTree
 set guioptions-=L
+
+" disable auto-opening of the NERDTree plugin at start
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
 
 " enable rainbowParenthese for ruby and js files
 augroup rainbow_lisp
