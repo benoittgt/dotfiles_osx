@@ -31,13 +31,13 @@ Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'thoughtbot/vim-rspec'
+Plug 'ngmy/vim-rubocop', { 'on': 'Rubocop' }
 " Plug 'nathanaelkane/vim-indent-guides'
 
 " Themes
 Plug 'christophermca/meta5'
 Plug 'NLKNguyen/papercolor-theme'
 
-" Plug 'skwp/vim-iterm-rspec'
 " Plug 'mattn/emmet-vim'
 
 " ember
