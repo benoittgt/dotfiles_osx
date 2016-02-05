@@ -143,7 +143,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 """""" ruby specific
 " call pry
-abbreviate pry! require 'pry'; binding.pry
+abbreviate pry! binding.pry
 abbreviate rlog Rails::logger.info " \n"
 
 """""" map
