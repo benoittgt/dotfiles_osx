@@ -23,7 +23,6 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
-Plug 'unblevable/quick-scope'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'pbrisbin/vim-mkdir'
@@ -38,11 +37,14 @@ Plug 'ngmy/vim-rubocop', { 'on': 'Rubocop' }
 Plug 'christophermca/meta5'
 Plug 'NLKNguyen/papercolor-theme'
 
-" Plug 'mattn/emmet-vim'
-
 " ember
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars'}
+
+" Quickscopes doesn't work properly with vim in iterm
+if has('gui_running')
+  Plug 'unblevable/quick-scope'
+endif
 
 call plug#end()
 

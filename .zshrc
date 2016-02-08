@@ -2,7 +2,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME='clean'
 
 # When you don't prefer fuzzy matching and do not wish to "quote" every word
-FZF_DEFAULT_OPTS="-e"
+export FZF_DEFAULT_OPTS="-e"
 
 plugins=(git rails ruby terminalapp common-aliases git-extras)
 
