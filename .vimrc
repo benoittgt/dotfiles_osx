@@ -99,6 +99,9 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
+" I fail too often into Ex mode
+nnoremap Q <nop>
+
 " airline
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1

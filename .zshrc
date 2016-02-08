@@ -19,6 +19,7 @@ alias rbrd='rerun --dir app,spec,config bin/rspec --format documentation -p "**/
 alias m='mvim .'
 alias gpoc='git push origin $(current_branch):master'
 alias gbb='git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
+alias gst='git status -uall'
 
 #Clean anoying warning when using git push
 unset GNOME_KEYRING_CONTROL
