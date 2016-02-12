@@ -29,9 +29,9 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'thoughtbot/vim-rspec'
-Plug 'ngmy/vim-rubocop', { 'on': 'Rubocop' }
-" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'janko-m/vim-test'
+Plug 'ngmy/vim-rubocop'
+Plug 'nathanaelkane/vim-indent-guides'
 
 " Themes
 Plug 'christophermca/meta5'
