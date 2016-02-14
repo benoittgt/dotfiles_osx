@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
-Plug 'terryma/vim-expand-region'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/syntastic'
 Plug 'thoughtbot/vim-rspec'
@@ -211,6 +210,9 @@ nnoremap <Leader>v :CtrlPBuffer<CR><CR>
 
 " Close current window
 nnoremap <Leader>x :close<CR><CR>
+
+" Search with Ag word under cursor
+nnoremap <leader>k :exe 'Ag' expand('<cword>')<cr>
 
 " relativenumber line number
 function! NumberToggle()
