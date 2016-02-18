@@ -31,6 +31,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'vim-airline/vim-airline-themes'
 
 " Themes
 Plug 'christophermca/meta5'
@@ -77,6 +78,7 @@ set noeol "no new line at the end of the file
 " theme
 set background=dark
 colorscheme molokai
+let g:airline_theme='molokai'
 
 " History
 set history=1000         " remember more commands and search history
