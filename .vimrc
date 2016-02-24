@@ -269,8 +269,8 @@ endfunction
 :map <leader>p :PromoteToLet<cr>
 
 " Convenient bindings for beginning and end of line.
-nnoremap B ^
-nnoremap E $
+nnoremap <leader>B ^
+nnoremap <leader>E $
 
 " Clear the search buffer.
 nnoremap <leader><CR> :nohlsearch<CR>
