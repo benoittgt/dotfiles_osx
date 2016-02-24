@@ -31,11 +31,11 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline-themes'
 
 " Themes
-Plug 'christophermca/meta5'
-Plug 'NLKNguyen/papercolor-theme'
+" Plug 'christophermca/meta5'
+" Plug 'NLKNguyen/papercolor-theme'
 
 " ember
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -206,7 +206,7 @@ nnoremap <Leader>d :bd<CR>
 nnoremap <Leader>q :wq<CR>
 
 " Open buffer list
-nnoremap <Leader>t :CtrlPTag<SPACE>
+nnoremap <Leader>t :CtrlPTag<CR><CR>
 
 " Open tag list
 nnoremap <Leader>v :CtrlPBuffer<CR><CR>
@@ -254,3 +254,23 @@ map <Leader>rl :call RunLastSpec()<CR>
 " Rspec.vim run command
 let g:rspec_command = "clear && rbr {spec}"
 let g:rspec_runner = "os_x_iterm"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PROMOTE VARIABLE TO RSPEC LET
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
+
+" Convenient bindings for beginning and end of line.
+nnoremap B ^
+nnoremap E $
+
+" Clear the search buffer.
+nnoremap <leader><CR> :nohlsearch<CR>
