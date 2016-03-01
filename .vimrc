@@ -11,7 +11,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'scrooloose/syntastic'
 Plug 'thoughtbot/vim-rspec'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-rails'
@@ -31,15 +30,10 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'vim-airline/vim-airline-themes'
-
-" Themes
-" Plug 'christophermca/meta5'
-" Plug 'NLKNguyen/papercolor-theme'
 
 " ember
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars'}
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars'}
 
 " Quickscopes doesn't work properly with vim in iterm
 if has('gui_running')
@@ -79,7 +73,6 @@ set incsearch
 " theme
 set background=dark
 colorscheme molokai
-let g:airline_theme='molokai'
 
 " History
 set history=1000         " remember more commands and search history
@@ -274,3 +267,18 @@ nnoremap <leader>E $
 
 " Clear the search buffer.
 nnoremap <leader><CR> :nohlsearch<CR>
+
+" Remove Ruby syntax 1.9
+:command! RubyHashSyntaxUpdate :%s/:\([a-z_]*\) =>/\1:/g
+
+" Prefere *_spec.rb rather than *_test.rb with :A
+let g:rails_projections = {
+      \  'app/*.rb': {
+      \     'alternate': 'spec/{}_spec.rb',
+      \     'type': 'source'
+      \   },
+      \  'spec/*_spec.rb': {
+      \     'alternate': 'app/{}.rb',
+      \     'type': 'test'
+      \   }
+      \}
