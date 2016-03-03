@@ -274,11 +274,9 @@ nnoremap <leader><CR> :nohlsearch<CR>
 " Prefere *_spec.rb rather than *_test.rb with :A
 let g:rails_projections = {
       \  'app/*.rb': {
-      \     'alternate': 'spec/{}_spec.rb',
-      \     'type': 'source'
+      \     'alternate': 'spec/{}_spec.rb'
       \   },
       \  'spec/*_spec.rb': {
-      \     'alternate': 'app/{}.rb',
-      \     'type': 'test'
+      \     'alternate': 'app/{}.rb'
       \   }
       \}

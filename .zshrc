@@ -21,6 +21,7 @@ alias gpod='git push origin $(current_branch):develop'
 alias gpom='git push origin $(current_branch):master'
 alias gbb='git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
 alias gst='git status -uall'
+alias r='spring stop && rake'
 
 #Clean anoying warning when using git push
 unset GNOME_KEYRING_CONTROL
@@ -28,3 +29,21 @@ alias cca='cd ~/code/appaloosa/'
 alias ctags='`brew --prefix`/bin/ctags'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fbr - checkout git branch, sorted by most recent commit, limit 30 occurences
+fbr() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# v - open files in mvim
+v() {
+  local files
+  files=$(grep '^>' ~/.viminfo | cut -c3- |
+          while read line; do
+            [ -f "${line/\~/$HOME}" ] && echo "$line"
+          done | fzf-tmux -d -m -q "$*" -1) && mvim ${files//\~/$HOME}
+}
