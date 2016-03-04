@@ -24,7 +24,6 @@ alias gst='git status -uall'
 alias r='spring stop && rake'
 
 #Clean anoying warning when using git push
-unset GNOME_KEYRING_CONTROL
 alias cca='cd ~/code/appaloosa/'
 alias ctags='`brew --prefix`/bin/ctags'
 

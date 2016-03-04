@@ -32,6 +32,7 @@ Plug 'ngmy/vim-rubocop'
 Plug 'nathanaelkane/vim-indent-guides'
 
 " ember
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 " Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars'}
 
@@ -241,8 +242,8 @@ let jshint2_confirm = 0
 
 " Rspec.vim mapping
 map <Leader>rt :call RunCurrentSpecFile()<CR>
-map <Leader>rs :call RunNearestSpec()<CR>
-map <Leader>rl :call RunLastSpec()<CR>
+map <Leader>rn :call RunNearestSpec()<CR>
+" map <Leader>rl :call RunLastSpec()<CR>
 
 " Rspec.vim run command
 let g:rspec_command = "clear && rbr {spec}"
