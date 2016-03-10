@@ -30,6 +30,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'chriskempson/vim-tomorrow-theme'
 
 " ember
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
@@ -73,7 +74,7 @@ set incsearch
 
 " theme
 set background=dark
-colorscheme molokai
+colorscheme Tomorrow-Night-Bright
 
 " History
 set history=1000         " remember more commands and search history
@@ -141,6 +142,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 " Indent pasted text
 " nnoremap p pV`]=
 " nnoremap P PV`]=
+" nnoremap <leader>p p`[v`]=
 
 """""" ruby specific
 " call pry
@@ -209,10 +211,10 @@ nnoremap <Leader>v :CtrlPBuffer<CR><CR>
 nnoremap <Leader>x :close<CR><CR>
 
 " Search with Ag word under cursor in all the project
-nnoremap <leader>K :exe 'Ag' expand('<cword>')<cr>
+nnoremap <leader>K :exe 'Ag!' expand('<cword>')<cr>
 
 " Search with Ag word under cursor file under app
-nnoremap <leader>k :exe 'Ag' expand('<cword>') app/<cr>
+nnoremap <leader>k :exe 'Ag!' expand('<cword>') 'app'<cr>
 
 " Close the quickfix window. Don't need more for the moment
 noremap <Leader>e :ccl <bar> lcl<CR>

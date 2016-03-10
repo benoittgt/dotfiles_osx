@@ -22,6 +22,7 @@ alias gpom='git push origin $(current_branch):master'
 alias gbb='git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
 alias gst='git status -uall'
 alias r='spring stop && rake'
+alias api='cd ~/code/appaloosa-api/'
 
 #Clean anoying warning when using git push
 alias cca='cd ~/code/appaloosa/'
