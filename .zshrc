@@ -15,7 +15,7 @@ cd ~/code/appaloosa/
 #Alias
 alias tmux='tmux -2'
 alias rbr='rerun --dir app,spec,config bin/rspec -b -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" '
-alias rbrd='rerun --dir app,spec,config bin/rspec --format documentation -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}"'
+alias rbrd='rerun --dir app,spec,config  -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" 'bin/rspec --format documentation''
 alias m='mvim .'
 alias gpom='git push origin $(current_branch):master'
 alias gcd='gco develop'
