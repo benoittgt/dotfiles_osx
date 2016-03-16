@@ -77,18 +77,19 @@ set background=dark
 colorscheme Tomorrow-Night-Bright
 
 " History
-set history=1000         " remember more commands and search history
+" Remember more commands and search history
+set history=1000
 
 " Keep 5 lines below and above the cursor
 set scrolloff=5
 
-" cursor line
+" Cursor line
 set cursorline
 hi CursorLine guibg=Grey15
 
-"maximum number of changes that can be undone
+" Maximum number of changes that can be undone
 set undolevels=1000
-"maximum number lines to save for undo on a buffer reload
+" Maximum number lines to save for undo on a buffer reload
 set undoreload=1000
 set hidden
 
@@ -96,43 +97,40 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
-" I fail too often into Ex mode
-nnoremap Q <nop>
-
-" airline
+" Airline
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 set guifont=Droid_Sans_Mono_for_Powerline:h11
 let g:airline_powerline_fonts = 1
 
-" vim markdown
+" Vim markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
-" autosave when lost focus
+" Autosave when lost focus
 au FocusLost * :wa
 au FocusLost * silent! wa
 set autowrite
 
 """""""""""""""""""""""""""""""""""""""""
 " CTRLP settings
-" more result with ctrlp
+" More result with ctrlp
 let g:ctrlp_match_window = 'min:4,max:40'
 
-" ignore temp folder
+" Ignore temp folder
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 """""""""""""""""""""""""""""""""""""""""
 
-" disable the right scroll bar on macvim
+" Disable the right scroll bar on macvim
 set guioptions-=r
 
-" disable the left scroll bar on macvim in NerdTree
+" Disable the left scroll bar on macvim in NerdTree
 set guioptions-=L
 
-" disable auto-opening of the NERDTree plugin at start
+" Disable auto-opening of the NERDTree plugin at start
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
-" enable rainbowParenthese for ruby and js files
+" Enable rainbowParenthese for ruby and js files
 augroup rainbow_lisp
   autocmd!
   autocmd FileType ruby,javascript RainbowParentheses
@@ -145,7 +143,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 " nnoremap <leader>p p`[v`]=
 
 """""" ruby specific
-" call pry
+" Call pry
 abbreviate pry! binding.pry
 abbreviate rlog Rails::logger.info " \n"
 
@@ -161,6 +159,9 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
+" I fail too often into Ex mode
+nnoremap Q <nop>
+
 " Avoid Escape key
 imap jj <Esc>
 
@@ -174,10 +175,10 @@ nmap <C-T> <C-]>
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-" select matching bracket
+" Select matching bracket
 noremap % v%
 
-" buffer movements
+" Buffer movements
 map <up> <ESC>:ls<RETURN>
 map <down> <ESC>:Bclose<RETURN>
 map <left> <ESC>:bp<RETURN>
@@ -219,7 +220,17 @@ nnoremap <leader>k :exe 'Ag!' expand('<cword>') 'app'<cr>
 " Close the quickfix window. Don't need more for the moment
 noremap <Leader>e :ccl <bar> lcl<CR>
 
-" relativenumber line number
+" Lazy js. Append ; or , at the end of the line
+nnoremap <Leader>; m`A;<Esc>``
+nnoremap <Leader>, m`A,<Esc>``
+
+" Ctags the project silently
+nnoremap <leader>ct :silent ! ctags -R --languages=ruby --exclude=.git --exclude=log -f .tags<CR>
+
+" Add mapping to jump to sublime text for my co-workers
+nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
+
+" Relativenumber line number
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
@@ -231,18 +242,11 @@ endfunc
 
 nnoremap <C-b> :call NumberToggle()<CR>
 
-"lazy js. Append ; at the end of the line
-nnoremap <Leader>; m`A;<Esc>``
-nnoremap <Leader>, m`A,<Esc>``
-
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Trigger a highlight only when pressing f and F.
 let g:qs_highlight_on_keys = ['f', 'F']
-
-" Add mapping to jump to sublime text for my co-workers
-nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
 
 " Lint javascript when saved
 let jshint2_save = 1
@@ -256,6 +260,9 @@ map <Leader>rn :call RunNearestSpec()<CR>
 " Rspec.vim run command
 let g:rspec_command = "clear && rbr {spec}"
 let g:rspec_runner = "os_x_iterm"
+
+" Git commit message warp
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
