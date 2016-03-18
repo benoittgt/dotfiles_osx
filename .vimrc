@@ -261,6 +261,9 @@ map <Leader>rn :call RunNearestSpec()<CR>
 let g:rspec_command = "clear && rbr {spec}"
 let g:rspec_runner = "os_x_iterm"
 
+" Yank current line and file path
+:let @+=expand("%:h") . '/' . expand("%:t") . ':' . line(".")
+
 " Git commit message warp
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
