@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
+" Plug 'ap/vim-buftabline'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'thoughtbot/vim-rspec'
 Plug 'rking/ag.vim'
@@ -21,7 +22,6 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
@@ -31,6 +31,7 @@ Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " ember
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
@@ -69,9 +70,6 @@ set tags+=.tags
 set noeol "no new line at the end of the file
 set incsearch
 
-" Help me when I want to replace word surrounded by _
-" set iskeyword-=_
-
 " theme
 set background=dark
 colorscheme Tomorrow-Night-Bright
@@ -84,8 +82,8 @@ set history=1000
 set scrolloff=5
 
 " Cursor line
-set cursorline
-hi CursorLine guibg=Grey15
+" set cursorline
+" hi CursorLine guibg=Grey15
 
 " Maximum number of changes that can be undone
 set undolevels=1000
@@ -138,13 +136,12 @@ augroup END
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 " Indent pasted text
-" nnoremap p pV`]=
-" nnoremap P PV`]=
-" nnoremap <leader>p p`[v`]=
+nnoremap <leader>p p`[v`]=
+nnoremap <leader>P P`[v`]=
 
 """""" ruby specific
 " Call pry
-abbreviate pry! binding.pry
+abbreviate p! binding.pry
 abbreviate rlog Rails::logger.info " \n"
 
 """""" map
@@ -262,7 +259,7 @@ let g:rspec_command = "clear && rbr {spec}"
 let g:rspec_runner = "os_x_iterm"
 
 " Yank current line and file path
-:let @+=expand("%:h") . '/' . expand("%:t") . ':' . line(".")
+:let @+=join([expand('%'),  line(".")], ':')
 
 " Git commit message warp
 autocmd Filetype gitcommit setlocal spell textwidth=72
