@@ -9,8 +9,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'bling/vim-airline'
-" Plug 'ap/vim-buftabline'
+" Plug 'bling/vim-airline'
+ Plug 'ap/vim-buftabline'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'thoughtbot/vim-rspec'
 Plug 'rking/ag.vim'
@@ -22,7 +22,7 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -139,6 +139,10 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 nnoremap <leader>p p`[v`]=
 nnoremap <leader>P P`[v`]=
 
+" Clear highlighting on escape in normal mode
+nnoremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+
 """""" ruby specific
 " Call pry
 abbreviate p! binding.pry
@@ -190,7 +194,7 @@ let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 
 " Comment line with leader
-nnoremap <Leader>c :Commentary<CR>
+" nnoremap <Leader>c :Commentary<CR>
 vmap <Leader>c :Commentary<CR>
 
 " Close buffer
@@ -296,3 +300,6 @@ let g:rails_projections = {
       \     'alternate': 'app/{}.rb'
       \   }
       \}
+
+" Set black background for BufTab bar
+hi BufTabLineFill ctermbg=235
