@@ -9,8 +9,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'bling/vim-airline'
- Plug 'ap/vim-buftabline'
+Plug 'ap/vim-buftabline'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'thoughtbot/vim-rspec'
 Plug 'rking/ag.vim'
@@ -22,21 +21,19 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
-" Plug 'airblade/vim-gitgutter'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'AndrewRadev/splitjoin.vim'
-
-" ember
+Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars'}
+" Plug 'airblade/vim-gitgutter'
+" Plug 'junegunn/rainbow_parentheses.vim'
+" Plug 'bling/vim-airline'
 
 " Quickscopes doesn't work properly with vim in iterm
 if has('gui_running')
@@ -70,9 +67,11 @@ set tags+=.tags
 set noeol "no new line at the end of the file
 set incsearch
 
-" theme
+" Theme
 set background=dark
 colorscheme Tomorrow-Night-Bright
+" Set black background for BufTab bar
+hi BufTabLineFill ctermbg=235
 
 " History
 " Remember more commands and search history
@@ -82,8 +81,8 @@ set history=1000
 set scrolloff=5
 
 " Cursor line
-" set cursorline
-" hi CursorLine guibg=Grey15
+set cursorline
+hi CursorLine guibg=Grey15
 
 " Maximum number of changes that can be undone
 set undolevels=1000
@@ -129,15 +128,15 @@ let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
 " Enable rainbowParenthese for ruby and js files
-augroup rainbow_lisp
-  autocmd!
-  autocmd FileType ruby,javascript RainbowParentheses
-augroup END
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+" augroup rainbow_lisp
+"   autocmd!
+"   autocmd FileType ruby,javascript RainbowParentheses
+" augroup END
+" let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 " Indent pasted text
-nnoremap <leader>p p`[v`]=
-nnoremap <leader>P P`[v`]=
+nnoremap p p`[v`]=
+nnoremap P P`[v`]=
 
 " Clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
@@ -172,10 +171,6 @@ imap jk <ESC>:w<RETURN>
 " Remap ctags
 nmap <C-T> <C-]>
 
-" vim-expand
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 " Select matching bracket
 noremap % v%
 
@@ -183,19 +178,13 @@ noremap % v%
 map <up> <ESC>:ls<RETURN>
 map <down> <ESC>:Bclose<RETURN>
 map <left> <ESC>:bp<RETURN>
-nnoremap <Leader>h :bp<CR>
 map <right> <ESC>:bn<RETURN>
-nnoremap <Leader>l :bn<CR>
 
 " Define leader
 let mapleader = "\<Space>"
 
 " Save file with leader
 nnoremap <Leader>w :w<CR>
-
-" Comment line with leader
-" nnoremap <Leader>c :Commentary<CR>
-vmap <Leader>c :Commentary<CR>
 
 " Close buffer
 nnoremap <Leader>d :bd<CR>
@@ -263,7 +252,7 @@ let g:rspec_command = "clear && rbr {spec}"
 let g:rspec_runner = "os_x_iterm"
 
 " Yank current line and file path
-:let @+=join([expand('%'),  line(".")], ':')
+let @+=join([expand('%'),  line(".")], ':')
 
 " Git commit message warp
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -281,10 +270,6 @@ endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
 
-" Convenient bindings for beginning and end of line.
-nnoremap <leader>B ^
-nnoremap <leader>E $
-
 " Clear the search buffer.
 nnoremap <leader><CR> :nohlsearch<CR>
 
@@ -300,6 +285,3 @@ let g:rails_projections = {
       \     'alternate': 'app/{}.rb'
       \   }
       \}
-
-" Set black background for BufTab bar
-hi BufTabLineFill ctermbg=235
