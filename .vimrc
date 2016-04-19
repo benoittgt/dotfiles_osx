@@ -72,8 +72,11 @@ set incsearch
 " Theme
 set background=dark
 colorscheme Tomorrow-Night-Bright
-" Set black background for BufTab bar
-hi BufTabLineFill ctermbg=235
+" Buftabline colors
+hi! BufTabLineFill guibg=Black
+hi! BufTabLineActive guibg=DarkMagenta
+hi! BufTabLineCurrent guifg=#262626 guibg=#afdf00
+hi! BufTabLineHidden guifg=#eaeaea
 
 " History
 " Remember more commands and search history
