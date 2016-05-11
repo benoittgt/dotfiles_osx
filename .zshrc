@@ -3,6 +3,7 @@ ZSH_THEME='clean'
 
 # When you don't prefer fuzzy matching and do not wish to "quote" every word
 export FZF_DEFAULT_OPTS="-e"
+export disable_rubocop=true
 
 plugins=(git rails ruby terminalapp common-aliases git-extras)
 

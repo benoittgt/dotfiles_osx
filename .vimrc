@@ -87,7 +87,7 @@ set scrolloff=5
 
 " Cursor line
 set cursorline
-hi CursorLine guibg=Grey15
+hi CursorLine guibg=#0d0d0d
 
 " Maximum number of changes that can be undone
 set undolevels=1000
@@ -117,6 +117,8 @@ set autowrite
 " CTRLP settings
 " More result with ctrlp
 let g:ctrlp_match_window = 'min:4,max:40'
+" Max MRU entries to remember
+let g:ctrlp_mruf_max = 25
 
 " Ignore temp folder
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -203,6 +205,9 @@ nnoremap <Leader>t :CtrlPTag<CR><CR>
 " Open tag list
 nnoremap <Leader>v :CtrlPBuffer<CR><CR>
 
+" Open Most Recent Used files
+nnoremap <Leader>b :CtrlPMRU<CR><CR>
+
 " Close current window
 nnoremap <Leader>x :close<CR><CR>
 
@@ -252,8 +257,11 @@ map <Leader>rt :call RunCurrentSpecFile()<CR>
 map <Leader>rn :call RunNearestSpec()<CR>
 " map <Leader>rl :call RunLastSpec()<CR>
 
+" Split long lines with dots
+map <Leader>s :s/\v(\(\w{-}(\.\w{-})*)@<!\ze\./\=submatch(0) . "\n  " . matchstr(getline('.'), '^\s*')/g<CR>
+
 " Rspec.vim run command
-let g:rspec_command = "clear && rbr {spec}"
+let g:rspec_command = "clear && bin/rspec {spec}"
 let g:rspec_runner = "os_x_iterm"
 
 " Yank current line and file path
@@ -261,6 +269,10 @@ let @+=join([expand('%'),  line(".")], ':')
 
 " Git commit message warp
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" yml files spell
+autocmd BufRead,BufNewFile *.fr.yml setlocal spelllang=fr spell
+autocmd BufRead,BufNewFile *.en.yml setlocal spell
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
