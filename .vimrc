@@ -258,7 +258,7 @@ map <Leader>rn :call RunNearestSpec()<CR>
 " map <Leader>rl :call RunLastSpec()<CR>
 
 " Split long lines with dots
-map <Leader>s :s/\v(\(\w{-}(\.\w{-})*)@<!\ze\./\=submatch(0) . "\n  " . matchstr(getline('.'), '^\s*')/g<CR>
+nnoremap <Leader>s :s/^  // <Bar> s/\v\ze%(\(\w+%(\.\w+)*)@<!\./\="\n " . matchstr(getline('.'), '^\s*')/g<CR>
 
 " Rspec.vim run command
 let g:rspec_command = "clear && bin/rspec {spec}"
