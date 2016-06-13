@@ -86,8 +86,8 @@ set history=1000
 set scrolloff=5
 
 " Cursor line
-set cursorline
-hi CursorLine guibg=#0d0d0d
+" set cursorline
+" hi CursorLine guibg=#0d0d0d
 
 " Maximum number of changes that can be undone
 set undolevels=1000
@@ -134,6 +134,9 @@ set guioptions-=L
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
+" # to surround with ruby string interpolation
+let g:surround_35 = "#{\r}"
+
 " Enable rainbowParenthese for ruby and js files
 " augroup rainbow_lisp
 "   autocmd!
@@ -145,6 +148,10 @@ let g:loaded_netrwPlugin = 1
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
 
+" Quickly select the text that was just pasted. This allows you to, e.g.,
+" indent it after pasting.
+noremap gV `[v`]
+
 " Clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
@@ -153,6 +160,10 @@ nnoremap <esc>^[ <esc>^[
 " Call pry
 abbreviate p! binding.pry
 abbreviate rlog Rails::logger.info " \n"
+let ruby_space_errors = 1
+let ruby_no_expensive = 1
+" let ruby_operators = 1
+" let ruby_spellcheck_strings = 1
 
 """""" map
 " window movements
@@ -189,6 +200,10 @@ map <right> <ESC>:bn<RETURN>
 
 " Define leader
 let mapleader = "\<Space>"
+
+" Split properly to the alternate file with rails.vim
+nnoremap <leader>u :execute 'AS' <bar> wincmd J<CR>
+command! ASB :execute 'AS' | wincmd J
 
 " Save file with leader
 nnoremap <Leader>w :w<CR>
@@ -258,7 +273,9 @@ map <Leader>rn :call RunNearestSpec()<CR>
 " map <Leader>rl :call RunLastSpec()<CR>
 
 " Split long lines with dots
-nnoremap <Leader>s :s/^  // <Bar> s/\v\ze%(\(\w+%(\.\w+)*)@<!\./\="\n " . matchstr(getline('.'), '^\s*')/g<CR>
+" nnoremap <Leader>s :s/^  // <Bar> s/\v\ze%(\(\w+%(\.\w+)*)@<!\./\="\n " . matchstr(getline('.'), '^\s*')/g<CR>
+command! SplitDot let _s=@/ <bar> s/\v\.\w+%(\([^)]+\)|\{[^}]+})*/\r\0/g <bar> let @/=_s <bar> keepjumps normal! ``=']']
+nnoremap <Leader>s :SplitDot<CR>
 
 " Rspec.vim run command
 let g:rspec_command = "clear && bin/rspec {spec}"
@@ -302,3 +319,7 @@ let g:rails_projections = {
       \     'alternate': 'app/{}.rb'
       \   }
       \}
+
+" Avoid laging with matchparen plugin
+let g:matchparen_timeout = 20
+let g:matchparen_insert_timeout = 20
