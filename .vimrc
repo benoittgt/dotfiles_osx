@@ -148,10 +148,6 @@ let g:surround_35 = "#{\r}"
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
 
-" Quickly select the text that was just pasted. This allows you to, e.g.,
-" indent it after pasting.
-noremap gV `[v`]
-
 " Clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
@@ -193,10 +189,12 @@ nmap <C-T> <C-]>
 noremap % v%
 
 " Buffer movements
-map <up> <ESC>:ls<RETURN>
-map <down> <ESC>:Bclose<RETURN>
-map <left> <ESC>:bp<RETURN>
-map <right> <ESC>:bn<RETURN>
+" map <up> <ESC>:ls<RETURN>
+" map <down> <ESC>:Bclose<RETURN>
+" map <left> <ESC>:bp<RETURN>
+" map <right> <ESC>:bn<RETURN>
+nnoremap <Leader>h :bp<CR>
+nnoremap <Leader>l :bn<CR>
 
 " Define leader
 let mapleader = "\<Space>"
@@ -209,7 +207,7 @@ command! ASB :execute 'AS' | wincmd J
 nnoremap <Leader>w :w<CR>
 
 " Close buffer
-nnoremap <Leader>d :bd<CR>
+nnoremap <Leader>d :Bclose<CR>
 
 " Quit vim
 nnoremap <Leader>q :wq<CR>
