@@ -1,6 +1,10 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME='clean'
 
+# Avoid duplicate in history
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+
 # When you don't prefer fuzzy matching and do not wish to "quote" every word
 export FZF_DEFAULT_OPTS="-e"
 export disable_rubocop=true
@@ -48,3 +52,5 @@ v() {
             [ -f "${line/\~/$HOME}" ] && echo "$line"
           done | fzf-tmux -d -m -q "$*" -1) && mvim ${files//\~/$HOME}
 }
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
