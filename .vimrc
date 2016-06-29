@@ -192,6 +192,9 @@ nmap <C-T> <C-]>
 " Select matching bracket
 noremap % v%
 
+" Define leader
+let mapleader = "\<Space>"
+
 " Buffer movements
 " map <up> <ESC>:ls<RETURN>
 " map <down> <ESC>:Bclose<RETURN>
@@ -199,9 +202,6 @@ noremap % v%
 " map <right> <ESC>:bn<RETURN>
 nnoremap <Leader>h :bp<CR>
 nnoremap <Leader>l :bn<CR>
-
-" Define leader
-let mapleader = "\<Space>"
 
 " Split properly to the alternate file with rails.vim
 nnoremap <leader>u :execute 'AS' <bar> wincmd J<CR>
