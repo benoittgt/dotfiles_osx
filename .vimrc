@@ -203,6 +203,9 @@ let mapleader = "\<Space>"
 nnoremap <Leader>h :bp<CR>
 nnoremap <Leader>l :bn<CR>
 
+" Quick Ag access. Thanks Thoughtbot
+nnoremap \ :Ag!<SPACE>
+
 " Split properly to the alternate file with rails.vim
 nnoremap <leader>u :execute 'AS' <bar> wincmd J<CR>
 command! ASB :execute 'AS' | wincmd J
