@@ -203,6 +203,9 @@ let mapleader = "\<Space>"
 nnoremap <Leader>h :bp<CR>
 nnoremap <Leader>l :bn<CR>
 
+" Show next jshint error
+nnoremap <leader>m :lnext<CR>
+
 " Quick Ag access. Thanks Thoughtbot
 nnoremap \ :Ag!<SPACE>
 
