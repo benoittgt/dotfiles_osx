@@ -238,7 +238,7 @@ nnoremap <Leader>x :close<CR><CR>
 nnoremap <leader>K :exe 'Ag!' expand('<cword>')<cr>
 
 " Search with Ag word under cursor file under app
-nnoremap <leader>k :exe 'Ag!' expand('<cword>') 'app'<cr>
+nnoremap <leader>k :exe 'Ag!' expand('<cword>') 'app lib'<cr>
 
 " Close the quickfix window. Don't need more for the moment
 noremap <Leader>e :ccl <bar> lcl<CR>
