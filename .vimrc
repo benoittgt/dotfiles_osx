@@ -32,10 +32,10 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'itchyny/lightline.vim'
+Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'miyakogi/conoline.vim'
 " Plug 'airblade/vim-gitgutter'
-" Plug 'junegunn/rainbow_parentheses.vim'
-" Plug 'bling/vim-airline'
+
 
 " Quickscopes doesn't work properly with vim in iterm
 if has('gui_running')

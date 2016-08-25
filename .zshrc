@@ -26,6 +26,8 @@ alias gpom='git push origin $(current_branch):master'
 alias gcd='gco develop'
 alias gbb='git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
 alias gst='git status -uall'
+alias gw='bundle exec guard --watchdir spec/ app/ lib/'
+alias gu='bundle exec guard'
 alias r='spring stop && rake'
 alias api='cd ~/code/appaloosa-api/'
 
