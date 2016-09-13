@@ -34,6 +34,7 @@ Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'itchyny/lightline.vim'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'miyakogi/conoline.vim'
+Plug 'elentok/replace-all.vim'
 " Plug 'airblade/vim-gitgutter'
 
 
@@ -218,6 +219,9 @@ nnoremap <Leader>w :w<CR>
 
 " Close buffer
 nnoremap <Leader>d :Bclose<CR>
+
+" Closse all buffers
+nnoremap <Leader>D :bufdo bd<CR>
 
 " Quit vim
 nnoremap <Leader>q :wq<CR>
