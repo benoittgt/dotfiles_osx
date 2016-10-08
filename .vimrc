@@ -161,6 +161,7 @@ nnoremap <esc>^[ <esc>^[
 " Call pry
 abbreviate p! binding.pry
 abbreviate rlog Rails::logger.info " \n"
+abbreviate descrive describe
 let ruby_space_errors = 1
 let ruby_no_expensive = 1
 " let ruby_operators = 1
@@ -243,6 +244,9 @@ nnoremap <leader>K :exe 'Ag!' expand('<cword>')<cr>
 
 " Search with Ag word under cursor file under app
 nnoremap <leader>k :exe 'Ag!' expand('<cword>') 'app lib'<cr>
+
+" Search where the rails partial have been called
+nnoremap <leader>j :exe "Ag! " . substitute(expand("%:t:r:r"), "^_", "", "") . " app/views"
 
 " Close the quickfix window. Don't need more for the moment
 noremap <Leader>e :ccl <bar> lcl<CR>
@@ -335,3 +339,17 @@ let g:rails_projections = {
 " Avoid laging with matchparen plugin
 let g:matchparen_timeout = 20
 let g:matchparen_insert_timeout = 20
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE .. Thanks Gary Bernhardt
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+:command! RenameFile :call RenameFile()

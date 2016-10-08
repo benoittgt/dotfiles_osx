@@ -30,6 +30,7 @@ alias gw='bundle exec guard --watchdir spec/ app/ lib/'
 alias gu='bundle exec guard'
 alias r='spring stop && rake'
 alias api='cd ~/code/appaloosa-api/'
+alias b='spring stop && bundle exec guard'
 
 #Clean anoying warning when using git push
 alias cca='cd ~/code/appaloosa/'
