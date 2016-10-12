@@ -1,7 +1,28 @@
 config defaultToCurrentScreen true
-" ----------------------------------------------------------------------------
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
+config windowHintsShowIcons true
+
+# Monitor Aliases
+alias mon-laptop    1
+alias mon-iiyama    0
+
+# Abstract positions
+alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
+alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
+alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
+# Concrete positions
+alias 1-full        move screenOriginX;screenOriginY screenSizeX;screenSizeY         ${mon-laptop}
+alias 1-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
+alias 1-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
+alias 2-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-iiyama}
+alias 2-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-iiyama}
+alias 2-righttop    move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY/2       ${mon-iiyama}
+alias 2-rightbottom move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2
+
+# 2 Monitor layout
+layout 2monitors 'iTerm':REPEAT   ${2-right}
+layout 2monitors 'MacVim':REPEAT  ${2-left}
 
 # Push Bindings
 bind right:ctrl;cmd  push right bar-resize:screenSizeX/2
@@ -9,6 +30,12 @@ bind left:ctrl;cmd   push left  bar-resize:screenSizeX/2
 bind up:ctrl;cmd     push up    bar-resize:screenSizeY/2
 bind down:ctrl;cmd   push down  bar-resize:screenSizeY/2
 bind up:ctrl;cmd;alt   push down  bar-resize:screenSizeY/1
+# Push Bindings to other screen
+# bind right:ctrl;cmd  push right bar-resize:screenSizeX/2
+# bind left:ctrl;cmd   push left  bar-resize:screenSizeX/2
+
+# Layouts Binding
+bind down:ctrl;cmd;alt   layout 2monitors
 
 # Focus Bindings
 bind right:cmd    focus right
