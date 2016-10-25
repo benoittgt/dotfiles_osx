@@ -75,7 +75,7 @@ set background=dark
 colorscheme Tomorrow-Night-Bright
 " Buftabline colors
 hi! BufTabLineFill guibg=Black
-hi! BufTabLineActive guibg=DarkMagenta
+hi! BufTabLineActive guibg=#424242
 hi! BufTabLineCurrent guifg=#262626 guibg=#afdf00
 hi! BufTabLineHidden guifg=#eaeaea
 
@@ -120,6 +120,9 @@ set autowrite
 let g:ctrlp_match_window = 'min:4,max:40'
 " Max MRU entries to remember
 let g:ctrlp_mruf_max = 25
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+endif
 
 " Ignore temp folder
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -149,8 +152,8 @@ let g:surround_35 = "#{\r}"
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
 
-" Quickly select the text that was just pasted. This allows you to, e.g.,		
-" indent it after pasting.		
+" Quickly select the text that was just pasted. This allows you to, e.g.,
+" indent it after pasting.
 noremap gV `[v`]
 
 " Clear highlighting on escape in normal mode
@@ -194,7 +197,7 @@ nmap <C-T> <C-]>
 " Select matching bracket
 noremap % v%
 
-" Define leader
+" Defineleader
 let mapleader = "\<Space>"
 
 " Buffer movements
