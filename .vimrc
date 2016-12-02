@@ -18,11 +18,10 @@ Plug 'keith/rspec.vim'
 Plug 'tpope/vim-commentary'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-surround'
-Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
 Plug 'pbrisbin/vim-mkdir'
-Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
+Plug 'scrooloose/syntastic', { 'for': 'javascript' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
@@ -34,9 +33,10 @@ Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'itchyny/lightline.vim'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'miyakogi/conoline.vim'
-Plug 'elentok/replace-all.vim'
-" Plug 'airblade/vim-gitgutter'
-
+Plug 'AndrewRadev/writable_search.vim'
+" Plug 'imomaliev/registers.vim'
+Plug 'aliou/sql-heredoc.vim'
+Plug 'othree/yajs.vim'
 
 " Quickscopes doesn't work properly with vim in iterm
 if has('gui_running')
@@ -51,6 +51,7 @@ filetype plugin indent on
 syntax enable
 set nocompatible
 set number
+set relativenumber
 set autoindent
 set ruler
 set expandtab
@@ -264,7 +265,9 @@ nnoremap <leader>ct :silent ! ctags -R --languages=ruby --exclude=.git --exclude
 " Add mapping to jump to sublime text for my co-workers
 nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Relativenumber line number
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
@@ -275,6 +278,7 @@ function! NumberToggle()
 endfunc
 
 nnoremap <C-b> :call NumberToggle()<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -301,7 +305,7 @@ let g:rspec_command = "clear && bin/rspec {spec}"
 let g:rspec_runner = "os_x_iterm"
 
 " Yank current line and file path
-let @+=join([expand('%'),  line(".")], ':')
+" let @+=join([expand('%'),  line(".")], ':')
 
 " Git commit message warp
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -322,6 +326,7 @@ function! PromoteToLet()
 endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Clear the search buffer.
 nnoremap <leader><CR> :nohlsearch<CR>
@@ -347,12 +352,33 @@ let g:matchparen_insert_timeout = 20
 " RENAME CURRENT FILE .. Thanks Gary Bernhardt
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
 :command! RenameFile :call RenameFile()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""" Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
+
+" jump in listings (syntastic failure list)
+nnoremap <Leader>n :lnext<CR>
+nnoremap <Leader>p :lprevious<CR>
+
+" Reload vimrc when saving
+augroup reload_vimrc " {
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
