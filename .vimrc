@@ -34,7 +34,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'miyakogi/conoline.vim'
 Plug 'AndrewRadev/writable_search.vim'
-" Plug 'imomaliev/registers.vim'
 Plug 'aliou/sql-heredoc.vim'
 Plug 'othree/yajs.vim'
 
@@ -74,6 +73,8 @@ set incsearch
 " Theme
 set background=dark
 colorscheme Tomorrow-Night-Bright
+set laststatus=2
+set guifont=Droid_Sans_Mono_for_Powerline:h11
 " Buftabline colors
 hi! BufTabLineFill guibg=Black
 hi! BufTabLineActive guibg=#424242
@@ -100,12 +101,6 @@ set hidden
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
-
-" Airline
-set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-set guifont=Droid_Sans_Mono_for_Powerline:h11
-let g:airline_powerline_fonts = 1
 
 " Vim markdown
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -168,10 +163,7 @@ abbreviate rlog Rails::logger.info " \n"
 abbreviate descrive describe
 let ruby_space_errors = 1
 let ruby_no_expensive = 1
-" let ruby_operators = 1
-" let ruby_spellcheck_strings = 1
 
-"""""" map
 " window movements
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
@@ -190,7 +182,7 @@ nnoremap Q <nop>
 imap jj <Esc>
 
 " Avoid Escape key
-imap jk <ESC>:w<RETURN>
+imap jk <ESC>:w<CR>
 
 " Remap ctags
 nmap <C-T> <C-]>
@@ -202,10 +194,6 @@ noremap % v%
 let mapleader = "\<Space>"
 
 " Buffer movements
-" map <up> <ESC>:ls<RETURN>
-" map <down> <ESC>:Bclose<RETURN>
-" map <left> <ESC>:bp<RETURN>
-" map <right> <ESC>:bn<RETURN>
 nnoremap <Leader>h :bp<CR>
 nnoremap <Leader>l :bn<CR>
 
@@ -293,10 +281,8 @@ let jshint2_confirm = 0
 " Rspec.vim mapping
 map <Leader>rt :call RunCurrentSpecFile()<CR>
 map <Leader>rn :call RunNearestSpec()<CR>
-" map <Leader>rl :call RunLastSpec()<CR>
 
 " Split long lines with dots
-" nnoremap <Leader>s :s/^  // <Bar> s/\v\ze%(\(\w+%(\.\w+)*)@<!\./\="\n " . matchstr(getline('.'), '^\s*')/g<CR>
 command! SplitDot let _s=@/ <bar> s/\v\.\w+%(\([^)]+\)|\{[^}]+})*/\r\0/g <bar> let @/=_s <bar> keepjumps normal! ``=']']
 nnoremap <Leader>s :SplitDot<CR>
 
