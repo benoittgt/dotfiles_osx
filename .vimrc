@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ap/vim-buftabline'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'thoughtbot/vim-rspec'
 Plug 'rking/ag.vim'
@@ -26,16 +25,19 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
-Plug 'itchyny/lightline.vim'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'miyakogi/conoline.vim'
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'aliou/sql-heredoc.vim'
 Plug 'othree/yajs.vim'
+" Theme
+Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-buftabline'
+Plug 'rhysd/vim-color-spring-night'
+Plug 'chriskempson/vim-tomorrow-theme'
 
 " Quickscopes doesn't work properly with vim in iterm
 if has('gui_running')
@@ -70,16 +72,48 @@ set tags+=.tags
 set noeol "no new line at the end of the file
 set incsearch
 
-" Theme
+""" Theme
 set background=dark
-colorscheme Tomorrow-Night-Bright
 set laststatus=2
 set guifont=Droid_Sans_Mono_for_Powerline:h11
-" Buftabline colors
-hi! BufTabLineFill guibg=Black
-hi! BufTabLineActive guibg=#424242
-hi! BufTabLineCurrent guifg=#262626 guibg=#afdf00
-hi! BufTabLineHidden guifg=#eaeaea
+let g:conoline_use_colorscheme_default_insert=1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Theme selection
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! Night()
+  colorscheme spring-night
+  hi! BufTabLineActive cterm=underline ctermfg=233 ctermbg=132 gui=underline guifg=#334152 guibg=#a9667a
+  hi! BufTabLineCurrent ctermfg=233 ctermbg=132 guifg=#334152 guibg=#a9667a
+  hi! BufTabLineHidden ctermfg=230 ctermbg=238 guifg=#fffeeb guibg=#536273
+  let g:conoline_color_normal_dark = 'guibg=#435060 gui=None '
+                           \. 'ctermbg=235'
+  let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ }
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
+:command! Night :call Night()
+
+function! Dark()
+  colorscheme Tomorrow-Night-Bright
+  hi! BufTabLineFill guibg=Black
+  hi! BufTabLineActive guibg=#424242
+  hi! BufTabLineCurrent guifg=#262626 guibg=#afdf00
+  hi! BufTabLineHidden guifg=#eaeaea
+  let g:conoline_color_normal_dark = 'guibg=#2a2a2a gui=None '
+        \. 'ctermbg=234'
+  let g:lightline = { 'colorscheme': 'powerline', }
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
+:command! Dark :call Dark()
+
+Dark
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " History
 " Remember more commands and search history
