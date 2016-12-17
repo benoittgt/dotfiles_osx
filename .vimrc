@@ -400,5 +400,5 @@ nnoremap <Leader>p :lprevious<CR>
 " Reload vimrc when saving
 augroup reload_vimrc " {
   autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+  autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
 augroup END " }
