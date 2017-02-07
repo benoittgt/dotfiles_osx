@@ -6,7 +6,7 @@ setopt hist_find_no_dups
 setopt hist_ignore_all_dups
 
 # When you don't prefer fuzzy matching and do not wish to "quote" every word
-export FZF_DEFAULT_OPTS="-e"
+export FZF_DEFAULT_OPTS="--exact --height 80% --reverse"
 export disable_rubocop=true
 
 plugins=(git rails ruby terminalapp common-aliases git-extras)
@@ -43,18 +43,18 @@ alias ctags='`brew --prefix`/bin/ctags'
 fbr() {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    branch=$(echo "$branches" |
+  fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
 # v - open files in mvim
 v() {
   local files
   files=$(grep '^>' ~/.viminfo | cut -c3- |
-          while read line; do
-            [ -f "${line/\~/$HOME}" ] && echo "$line"
-          done | fzf-tmux -d -m -q "$*" -1) && mvim ${files//\~/$HOME}
+  while read line; do
+    [ -f "${line/\~/$HOME}" ] && echo "$line"
+  done | fzf-tmux -d -m -q "$*" -1) && mvim ${files//\~/$HOME}
 }
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

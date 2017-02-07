@@ -33,6 +33,7 @@ Plug 'miyakogi/conoline.vim'
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'aliou/sql-heredoc.vim'
 Plug 'othree/yajs.vim'
+Plug 'junegunn/vim-easy-align'
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -402,3 +403,6 @@ augroup reload_vimrc " {
   autocmd!
   autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
 augroup END " }
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
