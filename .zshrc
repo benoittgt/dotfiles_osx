@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME='clean'
+ZSH_THEME='sunrise'
 
 # Avoid duplicate in history
 setopt hist_find_no_dups
