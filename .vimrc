@@ -288,6 +288,10 @@ nnoremap <leader>ct :silent ! ctags -R --languages=ruby --exclude=.git --exclude
 " Add mapping to jump to sublime text for my co-workers
 nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
 
+" Yank into system clipboard current line with line number like :
+" ('my_folder/myfile:12')
+nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Relativenumber line number
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
