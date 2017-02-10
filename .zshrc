@@ -32,8 +32,8 @@ alias r='spring stop && rake'
 alias api='cd ~/code/appaloosa-api/'
 alias b='spring stop && bundle exec guard'
 alias lambda='cd ~/code/appaloosa_lambdas'
-
-#Clean anoying warning when using git push
+alias mla='cd ~/code/appaloosa_lambdas && m'
+alias mca='cd ~/code/appaloosa && m'
 alias cca='cd ~/code/appaloosa/'
 alias ctags='`brew --prefix`/bin/ctags'
 
