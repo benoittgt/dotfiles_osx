@@ -67,7 +67,7 @@ function custom_git_prompt() {
 
 # %B sets bold text
 PROMPT='%B$PROMPTPREFIX %c/ $(custom_git_prompt)%{$M%}%B»%b%{$RESET%} '
-RPS1="${return_code}"
+# RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$Y%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$Y%}›%{$RESET%} "

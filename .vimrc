@@ -53,7 +53,7 @@ filetype plugin indent on
 syntax enable
 set nocompatible
 set number
-set relativenumber
+set number
 set autoindent
 set ruler
 set expandtab
