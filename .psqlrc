@@ -24,11 +24,3 @@
 
 -- Unable timing
 \timing on
-
--- get query stats
--- \set qstats92 'SELECT usename, datname, left(query,100) || ''...'' As query FROM pg_stat_activity WHERE state != ''idle'' ;'
-
--- Autocomplete keywords (like SELECT) in upper-case, even if you started
--- typing them in lower case.
-\set COMP_KEYWORD_CASE upper
-

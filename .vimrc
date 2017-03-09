@@ -33,7 +33,7 @@ Plug 'miyakogi/conoline.vim'
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'aliou/sql-heredoc.vim'
 Plug 'othree/yajs.vim'
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -141,7 +141,6 @@ set noerrorbells         " don't beep
 au BufRead,BufNewFile *.md set filetype=markdown
 
 " Autosave when lost focus
-au FocusLost * :wa
 au FocusLost * silent! wa
 set autowrite
 
