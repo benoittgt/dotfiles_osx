@@ -33,6 +33,7 @@ Plug 'miyakogi/conoline.vim'
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'aliou/sql-heredoc.vim'
 Plug 'othree/yajs.vim'
+Plug 'mpyatishev/vim-sqlformat'
 " Plug 'junegunn/vim-easy-align'
 " Theme
 Plug 'itchyny/lightline.vim'
@@ -95,6 +96,8 @@ function! Night()
   call lightline#init()
   call lightline#colorscheme()
   call lightline#update()
+  set cursorline
+  hi CursorLine guibg=#0d0d0d ctermbg=238
 endfunction
 :command! Night :call Night()
 
@@ -110,6 +113,8 @@ function! Dark()
   call lightline#init()
   call lightline#colorscheme()
   call lightline#update()
+  set cursorline
+  hi CursorLine guibg=#0d0d0d ctermbg=238
 endfunction
 :command! Dark :call Dark()
 
@@ -124,8 +129,6 @@ set history=1000
 set scrolloff=5
 
 " Cursor line
-" set cursorline
-" hi CursorLine guibg=#0d0d0d
 
 " Maximum number of changes that can be undone
 set undolevels=1000
@@ -192,7 +195,7 @@ nnoremap <esc>^[ <esc>^[
 
 """""" ruby specific
 " Call pry
-abbreviate p! binding.pry
+abbreviate p! require 'pry'; binding.pry
 abbreviate rlog Rails::logger.info " \n"
 abbreviate descrive describe
 let ruby_space_errors = 1
@@ -282,7 +285,7 @@ nnoremap <Leader>; m`A;<Esc>``
 nnoremap <Leader>, m`A,<Esc>``
 
 " Ctags the project silently
-nnoremap <leader>ct :silent ! ctags -R --languages=ruby --exclude=.git --exclude=log -f .tags<CR>
+nnoremap <leader>ct :silent ! ripper-tags -R --force --exclude=.git -f .tags<CR>
 
 " Add mapping to jump to sublime text for my co-workers
 nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>

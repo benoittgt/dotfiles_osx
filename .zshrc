@@ -54,10 +54,14 @@ v() {
   files=$(grep '^>' ~/.viminfo | cut -c3- |
   while read line; do
     [ -f "${line/\~/$HOME}" ] && echo "$line"
-  done | fzf-tmux -d -m -q "$*" -1) && mvim ${files//\~/$HOME}
+  done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
 }
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
