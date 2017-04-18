@@ -196,6 +196,8 @@ nnoremap <esc>^[ <esc>^[
 """""" ruby specific
 " Call pry
 abbreviate p! require 'pry'; binding.pry
+" puts the caller
+nnoremap <Leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 abbreviate rlog Rails::logger.info " \n"
 abbreviate descrive describe
 let ruby_space_errors = 1
@@ -233,6 +235,9 @@ let mapleader = "\<Space>"
 " Buffer movements
 nnoremap <Leader>h :bp<CR>
 nnoremap <Leader>l :bn<CR>
+
+" Ruby hash split
+nnoremap <Leader>r $v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>
 
 " Show next jshint error
 nnoremap <leader>m :lnext<CR>
