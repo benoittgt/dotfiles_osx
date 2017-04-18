@@ -10,10 +10,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'thoughtbot/vim-rspec'
+" Plug 'thoughtbot/vim-rspec'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-rails'
-Plug 'keith/rspec.vim'
+" Plug 'keith/rspec.vim'
 Plug 'tpope/vim-commentary'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-surround'
@@ -21,10 +21,10 @@ Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'scrooloose/syntastic', { 'for': 'javascript' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'janko-m/vim-test'
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
@@ -33,8 +33,6 @@ Plug 'miyakogi/conoline.vim'
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'aliou/sql-heredoc.vim'
 Plug 'othree/yajs.vim'
-Plug 'mpyatishev/vim-sqlformat'
-" Plug 'junegunn/vim-easy-align'
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -121,14 +119,11 @@ endfunction
 Dark
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" History
 " Remember more commands and search history
 set history=1000
 
 " Keep 5 lines below and above the cursor
 set scrolloff=5
-
-" Cursor line
 
 " Maximum number of changes that can be undone
 set undolevels=1000
@@ -164,13 +159,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " Disable the right scroll bar on macvim
 set guioptions-=r
 
-" Disable the left scroll bar on macvim in NerdTree
-set guioptions-=L
-
-" Disable auto-opening of the NERDTree plugin at start
-let g:loaded_netrw       = 1
-let g:loaded_netrwPlugin = 1
-
 " # to surround with ruby string interpolation
 let g:surround_35 = "#{\r}"
 
@@ -201,7 +189,7 @@ nnoremap <Leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 abbreviate rlog Rails::logger.info " \n"
 abbreviate descrive describe
 let ruby_space_errors = 1
-let ruby_no_expensive = 1
+" let ruby_no_expensive = 1
 
 " window movements
 nmap <silent> <A-Up> :wincmd k<CR>
@@ -255,7 +243,7 @@ nnoremap <Leader>w :w<CR>
 " Close buffer
 nnoremap <Leader>d :Bclose<CR>
 
-" Closse all buffers
+" Close all buffers
 nnoremap <Leader>D :bufdo bd<CR>
 
 " Quit vim
@@ -324,20 +312,9 @@ let g:qs_highlight_on_keys = ['f', 'F']
 let jshint2_save = 1
 let jshint2_confirm = 0
 
-" Rspec.vim mapping
-map <Leader>rt :call RunCurrentSpecFile()<CR>
-map <Leader>rn :call RunNearestSpec()<CR>
-
 " Split long lines with dots
 command! SplitDot let _s=@/ <bar> s/\v\.\w+%(\([^)]+\)|\{[^}]+})*/\r\0/g <bar> let @/=_s <bar> keepjumps normal! ``=']']
 nnoremap <Leader>s :SplitDot<CR>
-
-" Rspec.vim run command
-let g:rspec_command = "clear && bin/rspec {spec}"
-let g:rspec_runner = "os_x_iterm"
-
-" Yank current line and file path
-" let @+=join([expand('%'),  line(".")], ':')
 
 " Git commit message warp
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -359,9 +336,6 @@ endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Clear the search buffer.
-nnoremap <leader><CR> :nohlsearch<CR>
 
 " Remove Ruby syntax 1.9
 :command! RubyHashSyntaxUpdate :%s/:\([a-z_]*\) =>/\1:/g
@@ -414,6 +388,3 @@ augroup reload_vimrc " {
   autocmd!
   autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
 augroup END " }
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
