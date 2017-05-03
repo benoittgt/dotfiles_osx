@@ -156,6 +156,10 @@ endif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 """""""""""""""""""""""""""""""""""""""""
 
+" Disable auto-opening of the netrw view at boot
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
+
 " Disable the right scroll bar on macvim
 set guioptions-=r
 
@@ -286,6 +290,12 @@ nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bi
 " Yank into system clipboard current line with line number like :
 " ('my_folder/myfile:12')
 nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
+
+" Quickly Rubocop autocorrect the file
+nnoremap <Leader>ra <ESC>:w<CR> \| :RuboCop -a<CR> \| :ccl <bar> lcl<CR>
+
+" Change word under cursor with prompt
+nnoremap <Leader>rp :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Relativenumber line number
