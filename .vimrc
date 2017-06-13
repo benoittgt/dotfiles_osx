@@ -8,6 +8,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ntpeters/vim-better-whitespace'
 " Plug 'thoughtbot/vim-rspec'
@@ -33,6 +34,7 @@ Plug 'miyakogi/conoline.vim'
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'aliou/sql-heredoc.vim'
 Plug 'othree/yajs.vim'
+Plug 'AndrewRadev/deleft.vim'
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -42,6 +44,10 @@ Plug 'chriskempson/vim-tomorrow-theme'
 " Quickscopes doesn't work properly with vim in iterm
 if has('gui_running')
   Plug 'unblevable/quick-scope'
+endif
+
+if !exists('g:loaded_netrw')
+  runtime! autoload/netrw.vim
 endif
 
 call plug#end()
@@ -77,6 +83,8 @@ set background=dark
 set laststatus=2
 set guifont=Droid_Sans_Mono_for_Powerline:h11
 let g:conoline_use_colorscheme_default_insert=1
+highlight OverLength ctermbg=red ctermfg=white guibg=green
+match OverLength /\%120v.*/
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme selection
@@ -94,8 +102,8 @@ function! Night()
   call lightline#init()
   call lightline#colorscheme()
   call lightline#update()
-  set cursorline
-  hi CursorLine guibg=#0d0d0d ctermbg=238
+  set nocursorline
+  " hi CursorLine guibg=#0d0d0d ctermbg=59
 endfunction
 :command! Night :call Night()
 
@@ -108,11 +116,11 @@ function! Dark()
   let g:conoline_color_normal_dark = 'guibg=#2a2a2a gui=None '
         \. 'ctermbg=234'
   let g:lightline = { 'colorscheme': 'powerline', }
-  call lightline#init()
-  call lightline#colorscheme()
-  call lightline#update()
-  set cursorline
-  hi CursorLine guibg=#0d0d0d ctermbg=238
+  " call lightline#init()
+  " call lightline#colorscheme()
+  " call lightline#update()
+  set nocursorline
+  " hi CursorLine guibg=#0d0d0d ctermbg=59
 endfunction
 :command! Dark :call Dark()
 
@@ -147,10 +155,11 @@ set autowrite
 " More result with ctrlp
 let g:ctrlp_match_window = 'min:4,max:40'
 " Max MRU entries to remember
-let g:ctrlp_mruf_max = 25
+let g:ctrlp_mruf_max = 35
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
+let g:ag_highlight=1
 
 " Ignore temp folder
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -184,12 +193,13 @@ noremap gV `[v`]
 " Clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+nnoremap <esc>^[ <esc>^[
 
 """""" ruby specific
 " Call pry
 abbreviate p! require 'pry'; binding.pry
 " puts the caller
-nnoremap <Leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+nnoremap <Leader>Wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 abbreviate rlog Rails::logger.info " \n"
 abbreviate descrive describe
 let ruby_space_errors = 1
@@ -235,11 +245,15 @@ nnoremap <Leader>r $v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>
 nnoremap <leader>m :lnext<CR>
 
 " Quick Ag access. Thanks Thoughtbot
-nnoremap \ :Ag!<SPACE>
+" let g:ag_prg="ag --column"
+nnoremap <leader>\ :Ag!<SPACE>
 
 " Split properly to the alternate file with rails.vim
 nnoremap <leader>u :execute 'AS' <bar> wincmd J<CR>
 command! ASB :execute 'AS' | wincmd J
+
+" Switch to alternate file with rails.vim
+nnoremap <leader>A :execute 'A'<CR>
 
 " Save file with leader
 nnoremap <Leader>w :w<CR>
@@ -272,7 +286,7 @@ nnoremap <leader>K :exe 'Ag!' expand('<cword>')<cr>
 nnoremap <leader>k :exe 'Ag!' expand('<cword>') 'app lib'<cr>
 
 " Search where the rails partial have been called
-nnoremap <leader>j :exe "Ag! " . substitute(expand("%:t:r:r"), "^_", "", "") . " app/views"
+nnoremap <leader>j :exe "Ag! " . substitute(expand("%:t:r:r"), "^_", "", "") . " app/views"<CR>
 
 " Close the quickfix window. Don't need more for the moment
 noremap <Leader>e :ccl <bar> lcl<CR>
