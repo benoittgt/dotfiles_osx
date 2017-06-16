@@ -30,7 +30,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
-Plug 'miyakogi/conoline.vim'
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'aliou/sql-heredoc.vim'
 Plug 'othree/yajs.vim'
@@ -65,7 +64,8 @@ set expandtab
 set tabstop=4
 set showmatch
 set smartcase
-set ignorecase
+" set ignorecase
+set infercase " for smarter completion
 set hlsearch
 set t_vb=
 set shiftwidth=2
@@ -78,13 +78,13 @@ set tags+=.tags
 set noeol "no new line at the end of the file
 set incsearch
 
+set wildmenu " add completion menu
+set wildmode=full
+
 """ Theme
 set background=dark
 set laststatus=2
 set guifont=Droid_Sans_Mono_for_Powerline:h11
-let g:conoline_use_colorscheme_default_insert=1
-highlight OverLength ctermbg=red ctermfg=white guibg=green
-match OverLength /\%120v.*/
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme selection
@@ -94,16 +94,12 @@ function! Night()
   hi! BufTabLineActive cterm=underline ctermfg=233 ctermbg=132 gui=underline guifg=#334152 guibg=#a9667a
   hi! BufTabLineCurrent ctermfg=233 ctermbg=132 guifg=#334152 guibg=#a9667a
   hi! BufTabLineHidden ctermfg=230 ctermbg=238 guifg=#fffeeb guibg=#536273
-  let g:conoline_color_normal_dark = 'guibg=#435060 gui=None '
-                           \. 'ctermbg=235'
   let g:lightline = {
         \ 'colorscheme': 'wombat',
         \ }
   call lightline#init()
   call lightline#colorscheme()
   call lightline#update()
-  set nocursorline
-  " hi CursorLine guibg=#0d0d0d ctermbg=59
 endfunction
 :command! Night :call Night()
 
@@ -113,14 +109,10 @@ function! Dark()
   hi! BufTabLineActive guibg=#424242
   hi! BufTabLineCurrent guifg=#262626 guibg=#afdf00
   hi! BufTabLineHidden guifg=#eaeaea
-  let g:conoline_color_normal_dark = 'guibg=#2a2a2a gui=None '
-        \. 'ctermbg=234'
   let g:lightline = { 'colorscheme': 'powerline', }
-  " call lightline#init()
-  " call lightline#colorscheme()
-  " call lightline#update()
-  set nocursorline
-  " hi CursorLine guibg=#0d0d0d ctermbg=59
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
 endfunction
 :command! Dark :call Dark()
 
@@ -227,9 +219,6 @@ imap jk <ESC>:w<CR>
 
 " Remap ctags
 nmap <C-T> <C-]>
-
-" Select matching bracket
-noremap % v%
 
 " Defineleader
 let mapleader = "\<Space>"
