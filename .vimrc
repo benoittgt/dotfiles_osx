@@ -21,7 +21,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
 Plug 'pbrisbin/vim-mkdir'
-Plug 'scrooloose/syntastic', { 'for': 'javascript' }
 " Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
@@ -64,8 +63,8 @@ set expandtab
 set tabstop=4
 set showmatch
 set smartcase
-" set ignorecase
-set infercase " for smarter completion
+set ignorecase
+" set infercase " for smarter completion
 set hlsearch
 set t_vb=
 set shiftwidth=2
@@ -167,13 +166,6 @@ set guioptions-=r
 " # to surround with ruby string interpolation
 let g:surround_35 = "#{\r}"
 
-" Enable rainbowParenthese for ruby and js files
-" augroup rainbow_lisp
-"   autocmd!
-"   autocmd FileType ruby,javascript RainbowParentheses
-" augroup END
-" let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-
 " Indent pasted text
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
@@ -191,7 +183,7 @@ nnoremap <esc>^[ <esc>^[
 " Call pry
 abbreviate p! require 'pry'; binding.pry
 " puts the caller
-nnoremap <Leader>Wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+nnoremap <Leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 abbreviate rlog Rails::logger.info " \n"
 abbreviate descrive describe
 let ruby_space_errors = 1
@@ -285,7 +277,7 @@ nnoremap <Leader>; m`A;<Esc>``
 nnoremap <Leader>, m`A,<Esc>``
 
 " Ctags the project silently
-nnoremap <leader>ct :silent ! ripper-tags -R --force --exclude=.git -f .tags<CR>
+nnoremap <leader>ct :! ripper-tags -R --force --exclude=.git -f .tags<CR>
 
 " Add mapping to jump to sublime text for my co-workers
 nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
@@ -382,19 +374,14 @@ endfunction
 :command! RenameFile :call RenameFile()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""" Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%*
+" Run ALE linters only when I save files
+" let g:ale_lint_on_text_changed = 'never'
+" Don't run ALE linters when opening file
+" let g:ale_lint_on_enter = 0
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
-
-" jump in listings (syntastic failure list)
-nnoremap <Leader>n :lnext<CR>
-nnoremap <Leader>p :lprevious<CR>
+" Move between linting errors
+" nnoremap ]r :ALENextWrap<CR>
+" nnoremap [r :ALEPreviousWrap<CR>
 
 " Reload vimrc when saving
 augroup reload_vimrc " {
