@@ -22,7 +22,7 @@ Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
 Plug 'pbrisbin/vim-mkdir'
 " Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" Plug 'janko-m/vim-test'
+Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -249,7 +249,7 @@ nnoremap <Leader>D :bufdo bd<CR>
 nnoremap <Leader>q :wq<CR>
 
 " Open buffer list
-nnoremap <Leader>t :CtrlPTag<CR><CR>
+nnoremap <Leader>g :CtrlPTag<CR><CR>
 
 " Open tag list
 nnoremap <Leader>v :CtrlPBuffer<CR><CR>
@@ -372,8 +372,15 @@ function! RenameFile()
   endif
 endfunction
 :command! RenameFile :call RenameFile()
+
+" VIM-TEST PREF"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let test#strategy = "iterm"
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+let test#ruby#rspec#options = '--format documentation'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" ALE PREF""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Run ALE linters only when I save files
 " let g:ale_lint_on_text_changed = 'never'
 " Don't run ALE linters when opening file
@@ -382,6 +389,7 @@ endfunction
 " Move between linting errors
 " nnoremap ]r :ALENextWrap<CR>
 " nnoremap [r :ALEPreviousWrap<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Reload vimrc when saving
 augroup reload_vimrc " {
