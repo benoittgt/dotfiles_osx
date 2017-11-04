@@ -377,6 +377,8 @@ endfunction
 let test#strategy = "iterm"
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>L :TestLast<CR>
+nmap <silent> <leader>V :TestVisit<CR>
 let test#ruby#rspec#options = '--format documentation'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
