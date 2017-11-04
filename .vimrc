@@ -11,28 +11,22 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ntpeters/vim-better-whitespace'
-" Plug 'thoughtbot/vim-rspec'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-rails'
-" Plug 'keith/rspec.vim'
 Plug 'tpope/vim-commentary'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise' " Auto add 'end' after 'if'
 Plug 'ervandew/supertab'
 Plug 'pbrisbin/vim-mkdir'
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
-" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'AndrewRadev/writable_search.vim'
-Plug 'aliou/sql-heredoc.vim'
-Plug 'othree/yajs.vim'
-Plug 'AndrewRadev/deleft.vim'
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -170,10 +164,6 @@ let g:surround_35 = "#{\r}"
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
 
-" Quickly select the text that was just pasted. This allows you to, e.g.,
-" indent it after pasting.
-noremap gV `[v`]
-
 " Clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
@@ -182,18 +172,10 @@ nnoremap <esc>^[ <esc>^[
 """""" ruby specific
 " Call pry
 abbreviate p! require 'pry'; binding.pry
-" puts the caller
+" puts the caller. Thanks @tenderlove
 nnoremap <Leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
-abbreviate rlog Rails::logger.info " \n"
 abbreviate descrive describe
 let ruby_space_errors = 1
-" let ruby_no_expensive = 1
-
-" window movements
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
 
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
@@ -236,7 +218,7 @@ command! ASB :execute 'AS' | wincmd J
 " Switch to alternate file with rails.vim
 nnoremap <leader>A :execute 'A'<CR>
 
-" Save file with leader
+" Save file
 nnoremap <Leader>w :w<CR>
 
 " Close buffer
@@ -286,36 +268,14 @@ nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bi
 " ('my_folder/myfile:12')
 nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
 
-" Quickly Rubocop autocorrect the file
+" Quickly Rubocop autocorrect the file using rubocop vim
 nnoremap <Leader>ra <ESC>:w<CR> \| :RuboCop -a<CR> \| :ccl <bar> lcl<CR>
-
-" Change word under cursor with prompt
-nnoremap <Leader>rp :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Relativenumber line number
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-
-nnoremap <C-b> :call NumberToggle()<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Trigger a highlight only when pressing f and F.
 let g:qs_highlight_on_keys = ['f', 'F']
-
-" Lint javascript when saved
-let jshint2_save = 1
-let jshint2_confirm = 0
 
 " Split long lines with dots
 command! SplitDot let _s=@/ <bar> s/\v\.\w+%(\([^)]+\)|\{[^}]+})*/\r\0/g <bar> let @/=_s <bar> keepjumps normal! ``=']']
@@ -327,20 +287,6 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 " yml files spell
 autocmd BufRead,BufNewFile *.fr.yml setlocal spelllang=fr spell
 autocmd BufRead,BufNewFile *.en.yml setlocal spell
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PROMOTE VARIABLE TO RSPEC LET
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PromoteToLet()
-  :normal! dd
-  " :exec '?^\s*it\>'
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-:command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remove Ruby syntax 1.9
 :command! RubyHashSyntaxUpdate :%s/:\([a-z_]*\) =>/\1:/g
@@ -354,10 +300,6 @@ let g:rails_projections = {
       \     'alternate': 'app/{}.rb'
       \   }
       \}
-
-" Avoid laging with matchparen plugin
-let g:matchparen_timeout = 20
-let g:matchparen_insert_timeout = 20
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE .. Thanks Gary Bernhardt
