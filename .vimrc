@@ -27,6 +27,8 @@ Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
+" Plug 'junegunn/vim-easy-align'
+Plug 'jreybert/vimagit'
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -70,6 +72,7 @@ set cpoptions+=$
 set tags+=.tags
 set noeol "no new line at the end of the file
 set incsearch
+set splitbelow
 
 set wildmenu " add completion menu
 set wildmode=full
@@ -173,7 +176,7 @@ nnoremap <esc>^[ <esc>^[
 " Call pry
 abbreviate p! require 'pry'; binding.pry
 " puts the caller. Thanks @tenderlove
-nnoremap <Leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+nnoremap <Leader>ww oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 abbreviate descrive describe
 let ruby_space_errors = 1
 
@@ -212,8 +215,7 @@ nnoremap <leader>m :lnext<CR>
 nnoremap <leader>\ :Ag!<SPACE>
 
 " Split properly to the alternate file with rails.vim
-nnoremap <leader>u :execute 'AS' <bar> wincmd J<CR>
-command! ASB :execute 'AS' | wincmd J
+nnoremap <leader>u :execute 'AS'<CR>
 
 " Switch to alternate file with rails.vim
 nnoremap <leader>A :execute 'A'<CR>
@@ -243,10 +245,10 @@ nnoremap <Leader>b :CtrlPMRU<CR><CR>
 nnoremap <Leader>x :close<CR><CR>
 
 " Search with Ag word under cursor in all the project
-nnoremap <leader>K :exe 'Ag!' expand('<cword>')<cr>
+nnoremap <leader>K :exe 'Ag!' expand('<cword>') '--ignore-dir={tmp,log}'<cr>
 
 " Search with Ag word under cursor file under app
-nnoremap <leader>k :exe 'Ag!' expand('<cword>') 'app lib'<cr>
+nnoremap <leader>k :exe 'Ag!' expand('<cword>') '--ignore-dir={spec,test,tmp,log}'<cr>
 
 " Search where the rails partial have been called
 nnoremap <leader>j :exe "Ag! " . substitute(expand("%:t:r:r"), "^_", "", "") . " app/views"<CR>
@@ -280,6 +282,10 @@ let g:qs_highlight_on_keys = ['f', 'F']
 " Split long lines with dots
 command! SplitDot let _s=@/ <bar> s/\v\.\w+%(\([^)]+\)|\{[^}]+})*/\r\0/g <bar> let @/=_s <bar> keepjumps normal! ``=']']
 nnoremap <Leader>s :SplitDot<CR>
+
+" Quick string interpolation for Ruby
+nnoremap <Leader>3 bi"#{<esc>wwi}"<esc>
+nnoremap <Leader># bi#{<esc>wwi}<esc>
 
 " Git commit message warp
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -322,6 +328,7 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>L :TestLast<CR>
 nmap <silent> <leader>V :TestVisit<CR>
 let test#ruby#rspec#options = '--format documentation'
+let test#ruby#rspec#executable = 'FDOC=true ./bin/rspec'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ALE PREF""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -340,3 +347,9 @@ augroup reload_vimrc " {
   autocmd!
   autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
 augroup END " }
+
+" When editing a file, always jump to the last known cursor position.
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit"
+    \| exe "normal! g'\"" | endif
+endif
