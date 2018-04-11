@@ -273,6 +273,9 @@ nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
 " Quickly Rubocop autocorrect the file using rubocop vim
 nnoremap <Leader>ra <ESC>:w<CR> \| :RuboCop -a<CR> \| :ccl <bar> lcl<CR>
 
+" Jump to github line
+nnoremap <Leader>gb :.Gbrowse <CR>
+
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
