@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-rails'
@@ -27,6 +27,8 @@ Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/vim-easy-align'
 Plug 'jreybert/vimagit'
 " Theme
@@ -141,12 +143,12 @@ set autowrite
 """""""""""""""""""""""""""""""""""""""""
 " CTRLP settings
 " More result with ctrlp
-let g:ctrlp_match_window = 'min:4,max:40'
+" let g:ctrlp_match_window = 'min:4,max:40'
 " Max MRU entries to remember
-let g:ctrlp_mruf_max = 35
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-endif
+" let g:ctrlp_mruf_max = 35
+" if executable('ag')
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" endif
 let g:ag_highlight=1
 
 " Ignore temp folder
@@ -233,13 +235,13 @@ nnoremap <Leader>D :bufdo bd<CR>
 nnoremap <Leader>q :wq<CR>
 
 " Open buffer list
-nnoremap <Leader>g :CtrlPTag<CR><CR>
+nnoremap <C-p> :Files<CR><CR>
 
 " Open tag list
-nnoremap <Leader>v :CtrlPBuffer<CR><CR>
+nnoremap <Leader>v :Tags<CR><CR>
 
 " Open Most Recent Used files
-nnoremap <Leader>b :CtrlPMRU<CR><CR>
+nnoremap <Leader>b :History<CR><CR>
 
 " Close current window
 nnoremap <Leader>x :close<CR><CR>
@@ -320,6 +322,12 @@ function! RenameFile()
   endif
 endfunction
 :command! RenameFile :call RenameFile()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:fzf_tags_command = 'ripper-tags -R --force --exclude=.git -f .tags'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " VIM-TEST PREF"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let test#strategy = "iterm"
