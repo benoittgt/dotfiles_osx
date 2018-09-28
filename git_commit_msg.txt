@@ -1,4 +1,7 @@
 
+
+# feat|fix|docs|style|refactor|perf|test|chore|build|revert:
+# <type>(<scope, optional>): <subject>
 # If applied, this commit will...
 
 # Why is this change needed?

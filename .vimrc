@@ -28,7 +28,7 @@ Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'junegunn/vim-easy-align'
-Plug 'jreybert/vimagit'
+Plug 'airblade/vim-gitgutter'
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -150,7 +150,7 @@ endif
 let g:ag_highlight=1
 
 " Ignore temp folder
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 """""""""""""""""""""""""""""""""""""""""
 
 " Disable auto-opening of the netrw view at boot
@@ -176,7 +176,6 @@ nnoremap <esc>^[ <esc>^[
 " Call pry
 abbreviate p! require 'pry'; binding.pry
 " puts the caller. Thanks @tenderlove
-nnoremap <Leader>ww oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 abbreviate descrive describe
 let ruby_space_errors = 1
 
@@ -199,6 +198,10 @@ nmap <C-T> <C-]>
 
 " Defineleader
 let mapleader = "\<Space>"
+
+nnoremap <Leader>ww oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+nnoremap <Leader>F oputs "#" * 60<C-M>puts "<C-R>=expand("%") . ':' . line(".")<CR>"<C-M>puts "*" * 60<esc>
+nnoremap <leader>ne gg:put! =strftime('%b %d, %Y')<cr>i# <esc>o
 
 " Buffer movements
 nnoremap <Leader>h :bp<CR>
@@ -276,6 +279,9 @@ nnoremap <Leader>ra <ESC>:w<CR> \| :RuboCop -a<CR> \| :ccl <bar> lcl<CR>
 " Jump to github line
 nnoremap <Leader>gb :.Gbrowse <CR>
 
+" Preview hunk with gitter
+nmap <Leader>hv <Plug>GitGutterPreviewHunk
+
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -332,6 +338,10 @@ nmap <silent> <leader>L :TestLast<CR>
 nmap <silent> <leader>V :TestVisit<CR>
 let test#ruby#rspec#options = '--format documentation'
 let test#ruby#rspec#executable = 'FDOC=true ./bin/rspec'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" gitgutter """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gitgutter_enabled = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ALE PREF""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
