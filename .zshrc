@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME='sunrise'
+ZSH_THEME='clean-custom'
 
 # Avoid duplicate in history
 setopt hist_find_no_dups
@@ -18,6 +18,7 @@ source $ZSH/oh-my-zsh.sh
 cd ~/code/appaloosa/
 
 #Alias
+alias mvim='/Applications/MacVim.app/Contents/bin/mvim'
 alias tmux='tmux -2'
 alias rbr='rerun --dir app,spec,config bin/rspec -b -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" '
 alias rbrd='rerun --dir app,spec,config  -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" 'bin/rspec --format documentation''

@@ -29,6 +29,7 @@ Plug 'AndrewRadev/writable_search.vim'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-bundler'
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -242,7 +243,10 @@ nnoremap <Leader>g :CtrlPTag<CR><CR>
 nnoremap <Leader>v :CtrlPBuffer<CR><CR>
 
 " Open Most Recent Used files
-nnoremap <Leader>b :CtrlPMRU<CR><CR>
+nnoremap <Leader>R :CtrlPMRU<CR><CR>
+
+" Open Most bookmark dirs
+nnoremap <Leader>B :CtrlPBookmarkDir<CR><CR>
 
 " Close current window
 nnoremap <Leader>x :close<CR><CR>
@@ -277,10 +281,10 @@ nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
 nnoremap <Leader>ra <ESC>:w<CR> \| :RuboCop -a<CR> \| :ccl <bar> lcl<CR>
 
 " Jump to github line
-nnoremap <Leader>gb :.Gbrowse <CR>
+" nnoremap <Leader>gb :.Gbrowse <CR>
 
 " Preview hunk with gitter
-nmap <Leader>hv <Plug>GitGutterPreviewHunk
+" nmap <Leader>hv <Plug>GitGutterPreviewHunk
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -298,6 +302,9 @@ nnoremap <Leader># bi#{<esc>wwi}<esc>
 
 " Git commit message warp
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" markdown files autocorrect
+autocmd BufRead,BufNewFile *.md setlocal spell
 
 " yml files spell
 autocmd BufRead,BufNewFile *.fr.yml setlocal spelllang=fr spell
