@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME='clean-custom'
+ZSH_THEME='clean'
 
 # Avoid duplicate in history
 setopt hist_find_no_dups
@@ -13,8 +13,10 @@ plugins=(git rails ruby terminalapp common-aliases git-extras)
 
 source $ZSH/oh-my-zsh.sh
 
-# export PATH source
-# source ~/.zshrc_export_path
+# load https://github.com/rupa/z
+. ~/z.sh
+
+# default folder to open
 cd ~/code/appaloosa/
 
 #Alias
@@ -37,6 +39,8 @@ alias mla='cd ~/code/appaloosa_lambdas && m'
 alias mca='cd ~/code/appaloosa && m'
 alias cca='cd ~/code/appaloosa/'
 alias ctags='`brew --prefix`/bin/ctags'
+alias zshrc='nvim ~/.zshrc'
+alias vimrc='nvim ~/.vimrc'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -122,3 +126,6 @@ v() {
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PATH="/usr/local/opt/node@8/bin:$PATH"
