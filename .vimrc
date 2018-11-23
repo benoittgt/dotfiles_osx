@@ -176,7 +176,13 @@ nnoremap <esc>^[ <esc>^[
 """""" ruby specific
 " Call pry
 abbreviate p! require 'pry'; binding.pry
-" puts the caller. Thanks @tenderlove
+" puts the caller and other easy insert. Thanks @tenderlove
+augroup filetype_ruby
+  autocmd!
+  autocmd Filetype ruby :nnoremap <Leader>ww oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+  autocmd Filetype ruby :nnoremap <Leader>F oputs "#" * 60<C-M>puts "<C-R>=expand("%") . ':' . line(".")<CR>"<C-M>puts "*" * 60<esc>
+  autocmd Filetype ruby :nnoremap <leader>ne gg:put! =strftime('%b %d, %Y')<cr>i# <esc>o
+augroup END
 abbreviate descrive describe
 let ruby_space_errors = 1
 
@@ -199,10 +205,6 @@ nmap <C-T> <C-]>
 
 " Defineleader
 let mapleader = "\<Space>"
-
-nnoremap <Leader>ww oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
-nnoremap <Leader>F oputs "#" * 60<C-M>puts "<C-R>=expand("%") . ':' . line(".")<CR>"<C-M>puts "*" * 60<esc>
-nnoremap <leader>ne gg:put! =strftime('%b %d, %Y')<cr>i# <esc>o
 
 " Buffer movements
 nnoremap <Leader>h :bp<CR>
