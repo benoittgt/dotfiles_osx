@@ -254,13 +254,13 @@ nnoremap <Leader>B :CtrlPBookmarkDir<CR><CR>
 nnoremap <Leader>x :close<CR><CR>
 
 " Search with Ag word under cursor in all the project
-nnoremap <leader>K :exe 'Ag!' expand('<cword>') '--ignore-dir={tmp,log}'<cr>
+nnoremap <leader>K :exe "Ag!" expand('<cword>') '--ignore-dir={tmp,log}'<cr>
 
 " Search with Ag word under cursor file under app
-nnoremap <leader>k :exe 'Ag!' expand('<cword>') '--ignore-dir={spec,test,tmp,log}'<cr>
+nnoremap <leader>k :exe "Ag!" expand('<cword>') '--ignore-dir={spec,test,tmp,log}'<cr>
 
 " Search where the rails partial have been called
-nnoremap <leader>j :exe "Ag! " . substitute(expand("%:t:r:r"), "^_", "", "") . " app/views"<CR>
+nnoremap <leader>j :exe 'Ag! ' . substitute(expand("%:t:r:r"), "^_", "", "") . " app/views"<CR>
 
 " Close the quickfix window. Don't need more for the moment
 noremap <Leader>e :ccl <bar> lcl<CR>
