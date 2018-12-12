@@ -71,7 +71,7 @@ set ruler
 set backspace=indent,eol,start
 set cpoptions+=$
 set tags+=.tags
-set noeol "no new line at the end of the file
+" set noeol "no new line at the end of the file
 set incsearch
 set splitbelow
 
@@ -81,7 +81,7 @@ set wildmode=full
 """ Theme
 set background=dark
 set laststatus=2
-set guifont=Droid_Sans_Mono_for_Powerline:h11
+" set guifont=Droid_Sans_Mono_for_Powerline:h11
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme selection
@@ -151,7 +151,7 @@ endif
 let g:ag_highlight=1
 
 " Ignore temp folder
-" set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 """""""""""""""""""""""""""""""""""""""""
 
 " Disable auto-opening of the netrw view at boot
