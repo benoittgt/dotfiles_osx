@@ -11,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'rking/ag.vim'
+Plug 'albfan/ag.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-commentary'
 Plug 'rbgrouleff/bclose.vim'
@@ -41,9 +41,9 @@ if has('gui_running')
   Plug 'unblevable/quick-scope'
 endif
 
-if !exists('g:loaded_netrw')
-  runtime! autoload/netrw.vim
-endif
+" if !exists('g:loaded_netrw')
+"   runtime! autoload/netrw.vim
+" endif
 
 call plug#end()
 
@@ -176,9 +176,11 @@ nnoremap <esc>^[ <esc>^[
 """""" ruby specific
 " Call pry
 abbreviate p! require 'pry'; binding.pry
+abbreviate b! binding.irb
 " puts the caller and other easy insert. Thanks @tenderlove
 augroup filetype_ruby
   autocmd!
+  " setlocal iskeyword+=!,?
   autocmd Filetype ruby :nnoremap <Leader>ww oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
   autocmd Filetype ruby :nnoremap <Leader>F oputs "#" * 60<C-M>puts "<C-R>=expand("%") . ':' . line(".")<CR>"<C-M>puts "*" * 60<esc>
   autocmd Filetype ruby :nnoremap <leader>ne gg:put! =strftime('%b %d, %Y')<cr>i# <esc>o
@@ -302,8 +304,15 @@ nnoremap <Leader>s :SplitDot<CR>
 nnoremap <Leader>3 bi"#{<esc>wwi}"<esc>
 nnoremap <Leader># bi#{<esc>wwi}<esc>
 
-" Git commit message warp
-autocmd Filetype gitcommit setlocal spell textwidth=72
+"""""
+" Git commit
+" However, in Git commit messages, let’s make it 72 characters
+autocmd FileType gitcommit setlocal spell textwidth=72
+" Colour the 81st (or 73rd) column so that we don’t type over our limit
+set colorcolumn=+1
+" In Git commit messages, also colour the 51st column (for titles)
+autocmd FileType gitcommit set colorcolumn+=51
+"""""
 
 " markdown files autocorrect
 autocmd BufRead,BufNewFile *.md setlocal spell

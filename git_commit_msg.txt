@@ -1,15 +1,8 @@
 
-
+# Commit rules:
 # <type>(<scope, optional>): <If applied, this commit will...>
 # ----------------------------------------------------------------------
-# Type can be:
-#  - feat     (new feature)
-#  - fix      (bug fix)
-#  - refactor (refactoring production code)
-#  - style    (formatting, missing semi colons, etc; no code change)
-#  - docs     (changes to documentation)
-#  - test     (adding or refactoring tests; no production code change)
-#  - chore    (updating grunt tasks etc; no production code change)
+# pattern: '(feat|fix|docs|style|refactor|perf|test|build|revert)(\(.+\))?: .+'
 # ----------------------------------------------------------------------
 # Scope is just the scope of the change. Something like (admin) or (teacher).
 # ----------------------------------------------------------------------

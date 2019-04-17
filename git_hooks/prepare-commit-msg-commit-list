@@ -1,0 +1,28 @@
+#!/bin/sh
+# need to be executable and inside .git/hooks repository
+
+addCommitsList() {
+  COMMITS=$(git --no-pager log --pretty='# %Creset%s' --no-merges -10)
+
+  echo "\n\n# Commit list:\n$COMMITS\n`cat $1`\n" > "$1"
+}
+
+# You might need to consider squashes
+case "$2,$3" in
+  # Commits that already have a message
+  commit,?*)
+  ;;
+
+  # Messages are one line messages you decide how to handle
+  message,)
+  ;;
+
+  # Merge commits
+  merge,)
+  ;;
+
+  # Non-merges with no prior messages
+  *)
+    addCommitsList $1
+  ;;
+esac
