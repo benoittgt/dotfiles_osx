@@ -11,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'albfan/ag.vim'
+Plug 'rking/ag.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-commentary'
 Plug 'rbgrouleff/bclose.vim'
@@ -216,7 +216,7 @@ nnoremap <Leader>l :bn<CR>
 nnoremap <Leader>r $v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>
 
 " Show next jshint error
-nnoremap <leader>m :lnext<CR>
+" nnoremap <leader>m :lnext<CR>
 
 " Quick Ag access. Thanks Thoughtbot
 " let g:ag_prg="ag --column"
