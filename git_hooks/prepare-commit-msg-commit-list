@@ -1,5 +1,5 @@
 #!/bin/sh
-# need to be executable and inside .git/hooks repository
+# need to be in your project as .git/hooks/prepare-commit-msg
 
 addCommitsList() {
   COMMITS=$(git --no-pager log --pretty='# %Creset%s' --no-merges -10)
