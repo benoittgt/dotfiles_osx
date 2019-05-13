@@ -307,9 +307,8 @@ nnoremap <Leader># bi#{<esc>wwi}<esc>
 """""
 " Git commit
 " However, in Git commit messages, let’s make it 72 characters
-autocmd FileType gitcommit setlocal spell textwidth=72
+autocmd FileType gitcommit setlocal spell textwidth=72 colorcolumn=+1
 " Colour the 81st (or 73rd) column so that we don’t type over our limit
-set colorcolumn=+1
 " In Git commit messages, also colour the 51st column (for titles)
 autocmd FileType gitcommit set colorcolumn+=51
 """""
