@@ -371,6 +371,20 @@ let g:gitgutter_enabled = 0
 " nnoremap ]r :ALENextWrap<CR>
 " nnoremap [r :ALEPreviousWrap<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Function to create github urls for the current line of code
+function! GithubUrl()
+  let git_branch = system("git status | awk '/On branch/ {print $3}'| ruby -e 'print gets.strip'")
+  let random_symbol = system("ruby -e \"puts ['&','_','!','*','§'].sample\"")
+  " autocmd Filetype ruby :nnoremap <Leader>F oputs "#" * 60<C-M>puts "<C-R>=expand("%") . ':' . line(".")<CR>"<C-M>puts "*" * 60<esc>
+  let filename = bufname("%")
+  let linenumber = line(".")
+  let nested_directories = system('export PROJECT_GIT_DIR=$(git rev-parse --show-toplevel);pwd|sed "s|$PROJECT_GIT_DIR||"|tr -d "[:space:]"')
+  let url = repo_name . '/blob/' . git_branch . nested_directories . '/' . filename . "#L" . linenumber
+  let output = system('pbcopy', url)
+  return url
+endfunction
+
+command! GithubUrl call s:GithubUrl()
 
 " Reload vimrc when saving
 augroup reload_vimrc " {
