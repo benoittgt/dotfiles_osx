@@ -143,6 +143,8 @@ set autowrite
 " CTRLP settings
 " More result with ctrlp
 let g:ctrlp_match_window = 'min:4,max:40'
+" Avoid jumping to ~/
+" let g:ctrlp_working_path_mode = 'c'
 " Max MRU entries to remember
 let g:ctrlp_mruf_max = 35
 if executable('ag')
@@ -153,6 +155,11 @@ let g:ag_highlight=1
 " Ignore temp folder
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 """""""""""""""""""""""""""""""""""""""""
+
+" Fix :Gbrowse
+if !exists('g:loaded_netrw')
+  runtime! autoload/netrw.vim
+endif
 
 " Disable auto-opening of the netrw view at boot
 let g:loaded_netrw       = 1
