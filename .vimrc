@@ -24,12 +24,12 @@ Plug 'ngmy/vim-rubocop'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'junegunn/vim-easy-align'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-bundler'
+" Plug 'airblade/vim-gitgutter'
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -365,7 +365,7 @@ let test#ruby#rspec#executable = 'FDOC=true ./bin/rspec'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " gitgutter """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_enabled = 0
+" let g:gitgutter_enabled = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ALE PREF""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
