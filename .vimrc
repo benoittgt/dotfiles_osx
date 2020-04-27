@@ -28,6 +28,7 @@ Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'AndrewRadev/writable_search.vim'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Plug 'junegunn/vim-easy-align'
 " Plug 'airblade/vim-gitgutter'
 " Theme
