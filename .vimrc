@@ -183,7 +183,7 @@ nnoremap <esc>^[ <esc>^[
 
 """""" ruby specific
 " Call pry
-abbreviate p! require 'pry'; binding.pry
+" abbreviate p! require 'pry'; binding.pry
 abbreviate b! binding.irb
 " puts the caller and other easy insert. Thanks @tenderlove
 augroup filetype_ruby

@@ -53,5 +53,6 @@
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.views.repositories.files.layout": "tree",
     "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true
+    "files.trimFinalNewlines": true,
+    "trailing-spaces.logLevel": "info"
 }

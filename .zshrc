@@ -1,64 +1,88 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME='clean'
+# ZSH_THEME='clean'
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Avoid duplicate in history
 setopt hist_find_no_dups
 setopt hist_ignore_all_dups
 
+# avoid error with rake arguments
+unsetopt nomatch
+
 # When you don't prefer fuzzy matching and do not wish to "quote" every word
 export FZF_DEFAULT_OPTS="--exact --height 80% --reverse"
 export disable_rubocop=true
 
-plugins=(git rails ruby terminalapp common-aliases git-extras)
+plugins=(git rails uby terminalapp common-aliases git-extras)
 
+source ~/zsh_custom/per-directory-history.plugin.zsh
 source $ZSH/oh-my-zsh.sh
 
-# load https://github.com/rupa/z
-. ~/z.sh
+# Enable history in IEX through Erlang(OTP)
+export ERL_AFLAGS="-kernel shell_history enabled"
 
-# default folder to open
-cd ~/code/appaloosa/
+# export PATH source
+# source ~/.zshrc_export_path
+cd ~/code/
 
 #Alias
-alias mvim='/Applications/MacVim.app/Contents/bin/mvim'
 alias tmux='tmux -2'
 alias rbr='rerun --dir app,spec,config bin/rspec -b -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" '
 alias rbrd='rerun --dir app,spec,config  -p "**/*.{rb,js,jbuilder,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md}" 'bin/rspec --format documentation''
 alias m='mvim .'
-alias gpom='git push origin $(current_branch):master'
+alias n='nvim .'
 alias gcd='gco develop'
-alias gbb='git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
+alias gct='gco trunk'
 alias gst='git status -uall'
-alias gw='bundle exec guard --watchdir spec/ app/ lib/'
-alias gu='bundle exec guard'
-alias r='spring stop && rake'
+alias gcm="git checkout \`git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'\`"
 alias api='cd ~/code/appaloosa-api/'
-alias b='spring stop && bundle exec guard'
 alias lambda='cd ~/code/appaloosa_lambdas'
-alias mla='cd ~/code/appaloosa_lambdas && m'
-alias mca='cd ~/code/appaloosa && m'
 alias cca='cd ~/code/appaloosa/'
-alias ctags='`brew --prefix`/bin/ctags'
-alias zshrc='nvim ~/.zshrc'
-alias vimrc='nvim ~/.vimrc'
+alias c='cd ~/code'
+alias glog='git log --graph --oneline --stat --pickaxe-all'
+alias gbr='git branch -r | grep -v HEAD | while read b; do git log --color --format="%ci _%<(15,trunc)%C(magenta)%cr %C(bold cyan)$b%Creset %s %C(bold blue)<%an>%Creset" $b | head -n 1; done | sort -r | cut -d_ -f2- | head -20'
+alias composer="php /usr/local/bin/composer.phar"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/dotfiles/.zsh ] && source ~/.fzf.zsh
 
 # fbr - checkout git branch, sorted by most recent commit, limit 30 occurences
 fbr() {
-  local branches branch
-  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-    branch=$(echo "$branches" |
-  fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+  local branches
+  local num_branches
+  local branch
+  local target
+
+  branches="$(
+    git for-each-ref \
+      --count=30 \
+      --sort=-committerdate \
+      refs/heads/ \
+      --format='%(refname:short)'
+  )" || return
+
+  branch="$(
+    echo "$branches" \
+      | fzf-tmux +m
+  )" || return
+
+  target="$(
+    echo "$branch" \
+      | sed "s/.* //" \
+      | sed "s#remotes/[^/]*/##"
+  )" || return
+
+  git checkout "$target"
 }
 
 # fshow - git commit browser
 fshow() {
   local execute
+
   execute="grep -o \"[a-f0-9]\{7\}\" \
     | head -1 \
     | xargs -I % sh -c 'git show --color=always % | less -R'"
+
   git log \
     --graph \
     --color=always \
@@ -73,16 +97,54 @@ fshow() {
   {}
 FZF-EOF"
 }
-# fstash - easier way to deal with stashes
-# type fstash to get a list of your stashes
-# enter shows you the contents of the stash
-# ctrl-d shows a diff of the stash against your current HEAD
-# ctrl-b checks the stash out as a branch, for easier merging
+
+review-open() {
+  local default_branch=$(git rev-parse --abbrev-ref HEAD)
+  local branch="${1:-$default_branch}"
+  local base="${2:-develop}"
+
+  local diff_files=$(git diff --name-only origin/$base...$branch)
+  echo "Changed files from origin/master..."
+  echo $diff_files
+
+  mvim -c "let g:gitgutter_diff_base = 'origin/$base'" -c "let g:gitgutter_enabled = 1" -c ":e!" $(git diff --name-only origin/$base...$branch)
+}
+
+review() {
+  local default_branch=$(git rev-parse --abbrev-ref HEAD)
+  local branch="${1:-$default_branch}"
+  local base="${2:-develop}"
+
+  git fetch origin $base $branch
+
+  # This typically fails if you have stashed changes.
+  if ! git checkout $branch; then
+    return 1
+  fi
+
+  # Do this in the background?
+  if [[ -a "dev.yml" ]]; then
+    dev up
+  fi
+
+  review-open $branch $base
+}
+
+# v - open files in mvim
+v() {
+  local files
+  files=$(grep '^>' ~/.viminfo | cut -c3- |
+  while read line; do
+    [ -f "${line/\~/$HOME}" ] && echo "$line"
+  done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
+}
+
 fstash() {
   local out
   local q
   local k
   local sha
+
   while out="$(
     git stash list --pretty='%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs' \
       | fzf \
@@ -92,11 +154,9 @@ fstash() {
           --print-query \
           --expect=ctrl-d,ctrl-b
   )"; do
-    mapfile -t out <<< "$out"
-    q="${out[0]}"
-    k="${out[1]}"
-    sha="${out[-1]}"
-    sha="${sha%% *}"
+    q=$(head -1 <<< "$out")
+    k=$(head -2 <<< "$out" | tail -1)
+    sha=$(tail -1 <<< "$out" | cut -d' ' -f1)
     [[ -z "$sha" ]] && continue
     if [[ "$k" == 'ctrl-d' ]]; then
       git diff "$sha"
@@ -109,23 +169,37 @@ fstash() {
   done
 }
 
-# v - open files in mvim
-v() {
-  local files
-  files=$(grep '^>' ~/.viminfo | cut -c3- |
-  while read line; do
-    [ -f "${line/\~/$HOME}" ] && echo "$line"
-  done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
-}
+export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+export PATH="/Users/bti/Library/Android/sdk/platform-tools:$PATH"
+export PATH="/Users/bti/Library/Android/sdk/tools:$PATH"
+export PATH="/Users/bti/Library/Android/sdk/build-tools/29.0.3:$PATH"
+export GOPATH=$HOME/code/go
+export PATH=$PATH:$GOPATH/bin
 
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export GPG_TTY=$(tty)
+[ -f ~/.gnupg/gpg-agent-info ] && source ~/.gnupg/gpg-agent-info
+if [ -S "${GPG_AGENT_INFO%%:*}" ]; then
+    export GPG_AGENT_INFO
+else
+    eval $( gpg-agent --daemon --options ~/.gnupg/gpg-agent.conf --write-env-file ~/.gnupg/gpg-agent-info )
+fi
+export PATH="/usr/local/opt/curl/bin:$PATH"
+  . /usr/local/etc/profile.d/z.sh
+export PATH="/usr/local/opt/avr-gcc@7/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+alias dbundle='~/code/bundler/bin/bundle'
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# node version switch
+eval "$(fnm env --multi)"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export PATH="/usr/local/opt/node@8/bin:$PATH"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
