@@ -13,9 +13,9 @@ unsetopt nomatch
 export FZF_DEFAULT_OPTS="--exact --height 80% --reverse"
 export disable_rubocop=true
 
-plugins=(git rails uby terminalapp common-aliases git-extras)
+plugins=(git rails common-aliases git-extras)
 
-source ~/zsh_custom/per-directory-history.plugin.zsh
+# source ~/zsh_custom/per-directory-history.plugin.zsh
 source $ZSH/oh-my-zsh.sh
 
 # Enable history in IEX through Erlang(OTP)
@@ -42,9 +42,41 @@ alias c='cd ~/code'
 alias glog='git log --graph --oneline --stat --pickaxe-all'
 alias gbr='git branch -r | grep -v HEAD | while read b; do git log --color --format="%ci _%<(15,trunc)%C(magenta)%cr %C(bold cyan)$b%Creset %s %C(bold blue)<%an>%Creset" $b | head -n 1; done | sort -r | cut -d_ -f2- | head -20'
 alias composer="php /usr/local/bin/composer.phar"
+# alias hub=gh
+alias be='bundle exec'
+alias ber='bundle exec rspec --format doc'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # [ -f ~/dotfiles/.zsh ] && source ~/.fzf.zsh
+#
+# fbrf - checkout git branch --force, sorted by most recent commit, limit 30 occurences
+fbrf() {
+  local branches
+  local num_branches
+  local branch
+  local target
+
+  branches="$(
+  git for-each-ref \
+    --count=30 \
+    --sort=-committerdate \
+    refs/heads/ \
+    --format='%(refname:short)'
+      )" || return
+
+  branch="$(
+  echo "$branches" \
+  | fzf-tmux +m
+  )" || return
+
+  target="$(
+    echo "$branch" \
+     | sed "s/.* //" \
+     | sed "s#remotes/[^/]*/##"
+   )" || return
+
+  git checkout -f "$target"
+}
 
 # fbr - checkout git branch, sorted by most recent commit, limit 30 occurences
 fbr() {

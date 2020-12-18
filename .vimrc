@@ -10,8 +10,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jasoncodes/ctrlp-modified.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'rking/ag.vim'
+" Plug 'rking/ag.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-commentary'
 Plug 'rbgrouleff/bclose.vim'
@@ -27,8 +28,14 @@ Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'AndrewRadev/writable_search.vim'
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'othree/yajs.vim', { 'for': ' javascript' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/gem-browse'
+Plug 'tpope/vim-bundler'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/vim-easy-align'
 " Plug 'airblade/vim-gitgutter'
 " Theme
@@ -82,6 +89,12 @@ set wildmode=full
 """ Theme
 set background=dark
 set laststatus=2
+
+let g:indentLine_color_term = 239
+
+""" Show invisibles chars
+set list
+set lcs=tab:»_,trail:·
 " set guifont=Droid_Sans_Mono_for_Powerline:h11
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -157,6 +170,11 @@ let g:ag_highlight=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 """""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""
+" FZF settings
+let g:fzf_preview_window = ['down:80%', '?']
+"""""""""""""""""""""""""""""""""""""""""
+
 " Fix :Gbrowse
 if !exists('g:loaded_netrw')
   runtime! autoload/netrw.vim
@@ -183,7 +201,7 @@ nnoremap <esc>^[ <esc>^[
 
 """""" ruby specific
 " Call pry
-" abbreviate p! require 'pry'; binding.pry
+abbreviate p! require 'pry'; binding.pry
 abbreviate b! binding.irb
 " puts the caller and other easy insert. Thanks @tenderlove
 augroup filetype_ruby
@@ -228,7 +246,7 @@ nnoremap <Leader>r $v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>
 
 " Quick Ag access. Thanks Thoughtbot
 " let g:ag_prg="ag --column"
-nnoremap <leader>\ :Ag!<SPACE>
+nnoremap <leader>\ :Ag<SPACE>
 
 " Split properly to the alternate file with rails.vim
 nnoremap <leader>u :execute 'AS'<CR>
@@ -263,14 +281,37 @@ nnoremap <Leader>B :CtrlPBookmarkDir<CR><CR>
 " Close current window
 nnoremap <Leader>x :close<CR><CR>
 
+
+" "Raw"-version of Ag.
+" Prepend `autocmd VimEnter *` if you want to name it Ag
+" and override the default command
+" https://github.com/junegunn/fzf.vim/issues/27#issuecomment-219759803
+command! -bang -nargs=+ -complete=file Ag call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview('down:80%', '?'), <bang>0)
+
 " Search with Ag word under cursor in all the project
-nnoremap <leader>K :exe "Ag!" expand('<cword>') '--ignore-dir={tmp,log}'<cr>
+" nnoremap <leader>K :exe "Ag" expand('<cword>') '--ignore-dir={tmp,log}'<cr>
+command! -bang -nargs=* AgIgnoreTmpLog
+      \ call fzf#vim#ag(<q-args>,
+      \                 '--ignore-dir={tmp,log}',
+      \                 <bang>0 ? fzf#vim#with_preview('down:80%')
+      \                         : fzf#vim#with_preview('down:80%', '?'),
+      \                 <bang>0)
+nnoremap <silent> <Leader>K :AgIgnoreTmpLog <C-R><C-W><CR>
 
 " Search with Ag word under cursor file under app
-nnoremap <leader>k :exe "Ag!" expand('<cword>') '--ignore-dir={spec,test,tmp,log}'<cr>
+" nnoremap <leader>k :exe "Ag" expand('<cword>') '--ignore-dir={spec,test,tmp,log}'<cr>
+" nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+" Custom ag command to ignore files in node_modules, .git and include hidden files
+command! -bang -nargs=* AgApp
+  \ call fzf#vim#ag(<q-args>,
+  \                 '--ignore-dir={spec,test,tmp,log}',
+  \                 <bang>0 ? fzf#vim#with_preview('down:80%')
+  \                         : fzf#vim#with_preview('down:80%', '?'),
+  \                 <bang>0)
+nnoremap <silent> <Leader>k :Ag <C-R><C-W><CR>
 
 " Search where the rails partial have been called
-nnoremap <leader>j :exe 'Ag! ' . substitute(expand("%:t:r:r"), "^_", "", "") . " app/views"<CR>
+nnoremap <leader>j :exe 'Ag ' . substitute(expand("%:t:r:r"), "^_", "", "") . " app/views"<CR>
 
 " Close the quickfix window. Don't need more for the moment
 noremap <Leader>e :ccl <bar> lcl<CR>
@@ -331,13 +372,22 @@ autocmd BufRead,BufNewFile *.en.yml setlocal spell
 " Remove Ruby syntax 1.9
 :command! RubyHashSyntaxUpdate :%s/:\([a-z_]*\) =>/\1:/g
 
+" let g:coc_global_extensions = ['coc-solargraph']
+
 " Prefere *_spec.rb rather than *_test.rb with :A
+" Find proper alternate rake task, spec file
 let g:rails_projections = {
       \  'app/*.rb': {
       \     'alternate': 'spec/{}_spec.rb'
       \   },
       \  'spec/*_spec.rb': {
       \     'alternate': 'app/{}.rb'
+      \   },
+      \  'lib/tasks/*.rake': {
+      \    'alternate': 'spec/lib/tasks/{}_spec.rb'
+      \   },
+      \  'spec/lib/tasks/*_spec.rb': {
+      \     'alternate': 'lib/tasks/{}.rake'
       \   }
       \}
 
