@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME='clean'
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -201,30 +208,43 @@ fstash() {
   done
 }
 
-export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
-export PATH="/Users/bti/Library/Android/sdk/platform-tools:$PATH"
-export PATH="/Users/bti/Library/Android/sdk/tools:$PATH"
-export PATH="/Users/bti/Library/Android/sdk/build-tools/29.0.3:$PATH"
+current_branch() {
+ ref=$(git symbolic-ref HEAD | cut -d'/' -f3)
+ echo $ref
+}
+
+# export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
+# export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+# export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+# export PATH="/Users/bti/Library/Android/sdk/platform-tools:$PATH"
+# export PATH="/Users/bti/Library/Android/sdk/tools:$PATH"
+# export PATH="/Users/bti/Library/Android/sdk/build-tools/29.0.3:$PATH"
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
 
+export DISABLE_SPRING=true
+
+eval "$(rbenv init -)"
+
 export GPG_TTY=$(tty)
-[ -f ~/.gnupg/gpg-agent-info ] && source ~/.gnupg/gpg-agent-info
-if [ -S "${GPG_AGENT_INFO%%:*}" ]; then
-    export GPG_AGENT_INFO
-else
-    eval $( gpg-agent --daemon --options ~/.gnupg/gpg-agent.conf --write-env-file ~/.gnupg/gpg-agent-info )
-fi
-export PATH="/usr/local/opt/curl/bin:$PATH"
-  . /usr/local/etc/profile.d/z.sh
-export PATH="/usr/local/opt/avr-gcc@7/bin:$PATH"
-export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
-alias dbundle='~/code/bundler/bin/bundle'
+# [ -f ~/.gnupg/gpg-agent-info ] && source ~/.gnupg/gpg-agent-info
+# if [ -S "${GPG_AGENT_INFO%%:*}" ]; then
+#     export GPG_AGENT_INFO
+# else
+#     eval $( gpg-agent --daemon --options ~/.gnupg/gpg-agent.conf --write-env-file ~/.gnupg/gpg-agent-info )
+# fi
+# export PATH="/usr/local/opt/curl/bin:$PATH"
+. ~/code/z/z.sh
+# export PATH="/usr/local/opt/avr-gcc@7/bin:$PATH"
+# export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 
 # node version switch
-eval "$(fnm env --multi)"
+# eval "$(fnm env --multi)"
+
+# nvm node switch
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 
@@ -235,3 +255,7 @@ eval "$(fnm env --multi)"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=/Users/benoit/bin:$PATH
+
+# GNU xargs
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"

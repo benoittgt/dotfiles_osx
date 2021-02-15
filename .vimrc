@@ -10,9 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jasoncodes/ctrlp-modified.vim'
 Plug 'ntpeters/vim-better-whitespace'
-" Plug 'rking/ag.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-commentary'
 Plug 'rbgrouleff/bclose.vim'
@@ -28,9 +26,9 @@ Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'AndrewRadev/writable_search.vim'
-Plug 'othree/yajs.vim', { 'for': ' javascript' }
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'tpope/gem-browse'
 Plug 'tpope/vim-bundler'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -321,7 +319,7 @@ nnoremap <Leader>; m`A;<Esc>``
 nnoremap <Leader>, m`A,<Esc>``
 
 " Ctags the project silently
-nnoremap <leader>ct :! ripper-tags -R --force --exclude=.git -f .tags<CR>
+nnoremap <leader>ct :! ripper-tags -R --extra=q --force --exclude=.git -f .tags<CR>
 
 " Add mapping to jump to sublime text for my co-workers
 nnoremap <leader>st :! /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl % &<CR>
@@ -377,6 +375,27 @@ autocmd BufRead,BufNewFile *.en.yml setlocal spell
 " Prefere *_spec.rb rather than *_test.rb with :A
 " Find proper alternate rake task, spec file
 let g:rails_projections = {
+      \  "app/controllers/*_controller.rb": {
+      \      "test": [
+      \        "spec/requests/{}_spec.rb",
+      \        "spec/controllers/{}_controller_spec.rb",
+      \        "spec/features/{}_spec.rb",
+      \        "test/controllers/{}_controller_test.rb"
+      \      ],
+      \      "alternate": [
+      \        "spec/requests/{}_spec.rb",
+      \        "spec/controllers/{}_controller_spec.rb",
+      \        "test/controllers/{}_controller_test.rb"
+      \      ],
+      \   },
+      \   "spec/requests/*_spec.rb": {
+      \      "command": "request",
+      \      "alternate": [
+      \        "app/controllers/{}_controller.rb"
+      \      ],
+      \      "template": "require 'rails_helper'\n\n" .
+      \        "RSpec.describe '{}' do\nend",
+      \   },
       \  'app/*.rb': {
       \     'alternate': 'spec/{}_spec.rb'
       \   },
