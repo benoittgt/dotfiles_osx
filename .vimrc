@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-commentary'
@@ -170,7 +170,20 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 """""""""""""""""""""""""""""""""""""""""
 " FZF settings
+let $FZF_DEFAULT_OPTS = ''
 let g:fzf_preview_window = ['down:80%', '?']
+" let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '30new' }
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ripper-tags -R --extra=q --force --exclude=.git -f .tags'
+
+nmap <C-P> :FZF<CR>
+
+"""""
 """""""""""""""""""""""""""""""""""""""""
 
 " Fix :Gbrowse
@@ -265,13 +278,13 @@ nnoremap <Leader>D :bufdo bd<CR>
 nnoremap <Leader>q :wq<CR>
 
 " Open buffer list
-nnoremap <Leader>g :CtrlPTag<CR><CR>
+nnoremap <Leader>g :Tags<CR>
 
 " Open tag list
-nnoremap <Leader>v :CtrlPBuffer<CR><CR>
+nnoremap <Leader>v :Buffers<CR>
 
 " Open Most Recent Used files
-nnoremap <Leader>R :CtrlPMRU<CR><CR>
+nnoremap <Leader>R :History<CR>
 
 " Open Most bookmark dirs
 nnoremap <Leader>B :CtrlPBookmarkDir<CR><CR>
@@ -351,7 +364,6 @@ nnoremap <Leader>s :SplitDot<CR>
 nnoremap <Leader>3 bi"#{<esc>wwi}"<esc>
 nnoremap <Leader># bi#{<esc>wwi}<esc>
 
-"""""
 " Git commit
 " However, in Git commit messages, let’s make it 72 characters
 autocmd FileType gitcommit setlocal spell textwidth=72 colorcolumn=+1
@@ -383,6 +395,7 @@ let g:rails_projections = {
       \        "test/controllers/{}_controller_test.rb"
       \      ],
       \      "alternate": [
+      \        "spec/features/{}_spec.rb",
       \        "spec/requests/{}_spec.rb",
       \        "spec/controllers/{}_controller_spec.rb",
       \        "test/controllers/{}_controller_test.rb"
