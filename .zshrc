@@ -8,6 +8,10 @@ fi
 ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME='clean'
 ZSH_THEME="powerlevel10k/powerlevel10k"
+export POWERLEVEL9K_SHORTEN_STRATEGY='truncate_from_right'
+export POWERLEVEL9K_VCS_SHORTEN_STRATEGY='truncate_from_right'
+export POWERLEVEL9K_VCS_SHORTEN_LENGTH='1'
+export POWERLEVEL10K_VCS_SHORTEN_MIN_LENGTH='1'
 
 # Avoid duplicate in history
 setopt hist_find_no_dups

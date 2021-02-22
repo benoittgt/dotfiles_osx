@@ -22,6 +22,10 @@ Plug 'janko-m/vim-test'
 Plug 'ngmy/vim-rubocop'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'vim-ruby/vim-ruby'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
@@ -171,9 +175,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 """""""""""""""""""""""""""""""""""""""""
 " FZF settings
 let $FZF_DEFAULT_OPTS = ''
-let g:fzf_preview_window = ['down:80%', '?']
-" let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '30new' }
+let g:fzf_history_dir = '~/.fzf-history'
+let g:fzf_preview_window = ['down:50%', '?']
+let g:fzf_layout = { 'down': '50%' }
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -185,6 +189,14 @@ nmap <C-P> :FZF<CR>
 
 """""
 """""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""
+" fern settings
+let g:fern#renderer = "nerdfont"
+"""""
+"""""""""""""""""""""""""""""""""""""""""
+
 
 " Fix :Gbrowse
 if !exists('g:loaded_netrw')
